@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-const menuOptions = ["Home", "Problems", "Collaborations", "Marketplace"];
+// const menuOptions = ["Home", "Problems", "Collaborations", "Marketplace"];
 
 export default function App() {
     return (
