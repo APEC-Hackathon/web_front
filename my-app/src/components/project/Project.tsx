@@ -12,9 +12,10 @@ function Project({
                     <h2 className="subtitle is-6">{company}</h2>
                     <p>{description}</p>
                 </div>
-                <div className="column has-text-right">
+                <div className="column has-text-right is-vcentered">
                     <button className="button is-link">
-                        Go to project <ArrowRightIcon />
+                        Go to project <br />
+                        <ArrowRightIcon className="icon" />
                     </button>
                 </div>
             </div>
