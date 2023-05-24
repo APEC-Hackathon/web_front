@@ -9,17 +9,17 @@ import 'bulma/css/bulma.min.css';
 interface RouteCommon {
     loader?: LoaderFunction;
     action?: ActionFunction;
-    ErrorBoundary?: React.ComponentType<any>;
+    ErrorBoundary?: React.ComponentType<unknown>;
 }
 
 interface IRoute extends RouteCommon {
     path: string;
-    Element: React.ComponentType<any>;
+    Element: React.ComponentType<unknown>;
 }
 
 interface Pages {
     [key: string]: {
-        default: React.ComponentType<any>;
+        default: React.ComponentType<unknown>;
     } & RouteCommon;
 }
 
