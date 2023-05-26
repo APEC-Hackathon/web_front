@@ -6,8 +6,10 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.9",
+    "@mui/lab": "^5.0.0-alpha.131",
     "@mui/material": "^5.10.12",
     "@reduxjs/toolkit": "^1.8.6",
+    "@svgr/webpack": "^8.0.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -15,19 +17,25 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "axios": "^1.4.0",
+    "fastapi": "^0.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
-    "typescript": "^4.4.2",
+    "typescript": "^5.0.4",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-client": "openapi --input http://139.162.139.182/api/v1/openapi.json --output src/client --client axios"
+  },
+  "overrides": {
+    "@svgr/webpack": "$@svgr/webpack"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +54,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.24.0"
+  },
+  "homepage": "http://139.162.139.182"
 }
