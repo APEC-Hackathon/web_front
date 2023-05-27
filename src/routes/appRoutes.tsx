@@ -14,17 +14,12 @@ import MarketplaceCollaborationsPage from "../pages/marketplace/MarketplaceColla
 
 const appRoutes: RouteType[] = [
     {
-        index: true,
-        element: <HomePage />,
-        state: "home"
-    },
-    {
         path: "/dashboard",
         element: <DashboardPageLayout />,
         state: "dashboard",
         sidebarProps: {
             displayText: "Dashboard",
-            icon: <DashboardOutlinedIcon />
+            icon: <DashboardOutlinedIcon />,
         },
         child: [
             // {
@@ -37,7 +32,7 @@ const appRoutes: RouteType[] = [
                 element: <DashboardProblemsPage />,
                 state: "dashboard.problems",
                 sidebarProps: {
-                    displayText: "My Problems"
+                    displayText: "My Problems",
                 },
             },
             {
@@ -45,18 +40,18 @@ const appRoutes: RouteType[] = [
                 element: <DashboardCollaborationsPage />,
                 state: "dashboard.collaborations",
                 sidebarProps: {
-                    displayText: "My Collaborations"
-                }
+                    displayText: "My Collaborations",
+                },
             },
             {
                 path: "/dashboard/metrics",
                 element: <MetricsPage />,
                 state: "dashboard.metrics",
                 sidebarProps: {
-                    displayText: "My Metrics"
-                }
-            }
-        ]
+                    displayText: "My Metrics",
+                },
+            },
+        ],
     },
     {
         path: "/marketplace",
@@ -64,7 +59,7 @@ const appRoutes: RouteType[] = [
         state: "marketplace",
         sidebarProps: {
             displayText: "Marketplace",
-            icon: <AppsOutlinedIcon />
+            icon: <AppsOutlinedIcon />,
         },
         child: [
             {
@@ -72,7 +67,7 @@ const appRoutes: RouteType[] = [
                 element: <MarketplaceProblemsPage />,
                 state: "marketplace.problems",
                 sidebarProps: {
-                    displayText: "Problems"
+                    displayText: "Problems",
                 },
             },
             {
@@ -80,10 +75,10 @@ const appRoutes: RouteType[] = [
                 element: <MarketplaceCollaborationsPage />,
                 state: "marketplace.collaborations",
                 sidebarProps: {
-                    displayText: "Collaborations"
-                }
-            }
-        ]
+                    displayText: "Collaborations",
+                },
+            },
+        ],
     },
     {
         path: "/directory",
@@ -91,9 +86,9 @@ const appRoutes: RouteType[] = [
         state: "directory",
         sidebarProps: {
             displayText: "Directory",
-            icon: <ArticleOutlinedIcon />
-        }
-    }
+            icon: <ArticleOutlinedIcon />,
+        },
+    },
 ];
 
 export default appRoutes;

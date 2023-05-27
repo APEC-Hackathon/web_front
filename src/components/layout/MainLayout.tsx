@@ -15,17 +15,15 @@ const MainLayout = () => {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         const checkAuth = async () => {
-            const user = await authUtils.isAuthenticated()
-            if (!user) {
-                navigate('/login')
-            } else {
+            const user = await authUtils.isAuthenticated();
+            if (user) {
                 // save user
-                dispatch(setUser(user))
-                setLoading(false)
+                dispatch(setUser(user));
+                setLoading(false);
             }
-        }
-        checkAuth()
-    }, [navigate])
+        };
+        checkAuth();
+    }, [navigate, dispatch]);
   return (
     <Box sx={{ display: "flex" }}>
       <Topbar />
