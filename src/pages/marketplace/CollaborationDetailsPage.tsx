@@ -34,7 +34,7 @@ const CollaborationDetailsPage: React.FC = () => {
 
     return (
         <div>
-            <BasicSearchBar/>
+            <BasicSearchBar type={"collaboration"}/>
             <PostMediaPlayer/> // I need to input the collaboration id here
             <PostTextDataDisplay postData={collaboration}/>
             <CollaborationSource/> // Need to input the collaboration id here too

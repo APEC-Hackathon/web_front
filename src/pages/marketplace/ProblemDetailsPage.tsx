@@ -33,7 +33,7 @@ const ProblemDetailsPage: React.FC = () => {
 
     return (
         <div>
-            <BasicSearchBar/>
+            <BasicSearchBar type={"problem"}/>
             <PostMediaPlayer/> // I need to input the problem id here
             <PostTextDataDisplay postData={problem}/>
             <CollaborationSource/> // Need to input the problem id here too
