@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Collaboration } from '../models/Collaboration';
+import type { CollaborationBid } from '../models/CollaborationBid';
+import type { CollaborationBidCreate } from '../models/CollaborationBidCreate';
 import type { CollaborationCreate } from '../models/CollaborationCreate';
 import type { CollaborationUpdate } from '../models/CollaborationUpdate';
 
@@ -146,6 +148,54 @@ export class CollaborationService {
                 'skip': skip,
                 'limit': limit,
             },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Read Collaboration Bids
+     * Get collaboration bids.
+     * @param collaborationId
+     * @returns CollaborationBid Successful Response
+     * @throws ApiError
+     */
+    public static readCollaborationBidsApiV1CollaborationCollaborationIdBidGet(
+        collaborationId: number,
+    ): CancelablePromise<Array<CollaborationBid>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/collaboration/{collaboration_id}/bid/',
+            path: {
+                'collaboration_id': collaborationId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Create Collaboration Bid
+     * Create new collaboration bid.
+     * @param collaborationId
+     * @param requestBody
+     * @returns CollaborationBid Successful Response
+     * @throws ApiError
+     */
+    public static createCollaborationBidApiV1CollaborationCollaborationIdBidPost(
+        collaborationId: number,
+        requestBody: CollaborationBidCreate,
+    ): CancelablePromise<CollaborationBid> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/collaboration/{collaboration_id}/bid/',
+            path: {
+                'collaboration_id': collaborationId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
             errors: {
                 422: `Validation Error`,
             },

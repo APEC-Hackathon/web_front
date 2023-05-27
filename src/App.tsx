@@ -4,6 +4,8 @@ import { routes } from "./routes"
 import AuthLayout from "./components/layout/AuthLayout";
 import Login from "./pages/userAuth/Login";
 import Signup from "./pages/userAuth/Signup";
+import ProblemDetailsPage from "./pages/marketplace/ProblemDetailsPage";
+import CollaborationDetailsPage from "./pages/marketplace/CollaborationDetailsPage";
 
 function App() {
     return (
@@ -14,6 +16,8 @@ function App() {
                     <Route path="/signup" element={<Signup />} />
                 </Route>
                 <Route path="/" element={<MainLayout />}>
+                    <Route path="/problem/:id" element={<ProblemDetailsPage />} />
+                    <Route path="/collaboration/:id" element={<CollaborationDetailsPage />} />
                     {routes}
                 </Route>
             </Routes>

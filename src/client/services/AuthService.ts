@@ -24,7 +24,7 @@ export class AuthService {
     ): CancelablePromise<Token> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: 'http://139.162.139.182/api/v1/auth/login',
+            url: '/api/v1/auth/login',
             formData: formData,
             mediaType: 'application/x-www-form-urlencoded',
             errors: {
@@ -45,7 +45,7 @@ export class AuthService {
     ): CancelablePromise<User> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: 'http://139.162.139.182/api/v1/auth/signup',
+            url: '/api/v1/auth/signup',
             body: requestBody,
             mediaType: 'application/json',
             errors: {

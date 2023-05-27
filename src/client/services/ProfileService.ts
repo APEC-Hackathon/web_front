@@ -44,4 +44,26 @@ export class ProfileService {
         });
     }
 
+    /**
+     * Read User By Id
+     * Get a specific user by id.
+     * @param userId
+     * @returns User Successful Response
+     * @throws ApiError
+     */
+    public static readUserByIdApiV1ProfileUserIdGet(
+        userId: number,
+    ): CancelablePromise<User> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/profile/{user_id}',
+            path: {
+                'user_id': userId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
 }

@@ -10,7 +10,7 @@ const AuthLayout = () => {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const isAuth = false // verify token
+            const isAuth = await authUtils.isAuthenticated() // verify token
             if (!isAuth) {
                 setLoading(false)
             } else {

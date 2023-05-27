@@ -1809,6 +1809,18 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.7.tgz"
   integrity sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==
 
+"@react-buddy/ide-toolbox@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.npmjs.org/@react-buddy/ide-toolbox/-/ide-toolbox-2.3.1.tgz"
+  integrity sha512-xH4rVPvG8nADggIFJk3mlAQtZg05HwhPcsdnPhHw9JMuxSQi8qXG+0ImQSS58QjIFY9BGtAv2geAbIPBuh9q0w==
+
+"@react-buddy/palette-mui@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/@react-buddy/palette-mui/-/palette-mui-5.0.1.tgz"
+  integrity sha512-Oi6rwD4BALFSfyx99iO4qZuRNjb1BNBM2ahUXqfugk6EH42zRL7ThdSq1WoQ6XqgEgYVX/jeXyoV4BOEsmUGow==
+  dependencies:
+    "@react-buddy/ide-toolbox" "^2.3.1"
+
 "@reduxjs/toolkit@^1.8.6":
   version "1.8.6"
   resolved "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.8.6.tgz"
