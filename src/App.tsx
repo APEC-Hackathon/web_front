@@ -16,7 +16,6 @@ function App() {
         const checkAuthentication = () => {
             const isAuthenticated = localStorage.getItem("token") !== null;
             setIsAuthenticated(isAuthenticated);
-            setIsAuthenticated(true);
         };
 
         checkAuthentication();
