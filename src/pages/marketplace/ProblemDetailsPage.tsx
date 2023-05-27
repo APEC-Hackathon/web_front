@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import problemApi from '../../api/problemApi';
 import { Problem } from '../../client';
+import BasicSearchBar from "../../components/marketplace/BasicSearchBar";
+import PostMediaPlayer from "../../components/marketplace/PostMediaPlayer";
+import PostTextDataDisplay from "../../components/marketplace/PostTextDataDisplay";
+import CollaborationSource from "../../components/marketplace/CollaborationSource";
+import MeetTheCompany from "../../components/marketplace/MeetTheCompany";
 
 const ProblemDetailsPage: React.FC = () => {
     const { id } = useParams<{ id?: string }>();
@@ -28,9 +33,11 @@ const ProblemDetailsPage: React.FC = () => {
 
     return (
         <div>
-            <h2>{problem.title}</h2>
-            <p>{problem.description}</p>
-            {/* Render other details of the problem */}
+            <BasicSearchBar/>
+            <PostMediaPlayer/> // I need to input the problem id here
+            <PostTextDataDisplay postData={problem}/>
+            <CollaborationSource/> // Need to input the problem id here too
+            <MeetTheCompany/> // I need to input the company id here
         </div>
     );
 };

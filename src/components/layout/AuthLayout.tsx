@@ -10,11 +10,14 @@ const AuthLayout = () => {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const isAuth = await authUtils.isAuthenticated() // verify token
-            if (!isAuth) {
+            try {
+                const user = await authUtils.isAuthenticated()
+                if (user) {
+                    navigate('/')
+                }
+            } catch (e) {
                 setLoading(false)
-            } else {
-                navigate('/')
+                console.log(e)
             }
         }
         checkAuth()
@@ -38,4 +41,27 @@ const AuthLayout = () => {
     )
 }
 
-export default AuthLayout
+export default AuthLayout;
+
+// import { Container, Box } from '@mui/material'
+// import { useState, useEffect } from 'react'
+// import { Outlet, useNavigate } from 'react-router-dom'
+// import authUtils from '../../utils/authUtils'
+// import Loading from '../common/Loading'
+//
+// const AuthLayout = () => {
+//     return (
+//             <Container component='main' maxWidth='xs'>
+//                 <Box sx={{
+//                     marginTop: 8,
+//                     display: 'flex',
+//                     alignItems: 'center',
+//                     flexDirection: 'column'
+//                 }}>
+//                     <Outlet />
+//                 </Box>
+//             </Container>
+//     )
+// }
+//
+// export default AuthLayout

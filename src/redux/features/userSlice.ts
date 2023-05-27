@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
+import {User} from "../../client";
 
-const initialState = { value: {} }
+interface UserState {
+  value: User;
+}
+
+const initialState: UserState = {
+  value: {} as User,
+};
 
 export const userSlice = createSlice({
   name: 'user',
