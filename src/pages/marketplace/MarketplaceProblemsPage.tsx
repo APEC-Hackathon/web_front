@@ -17,7 +17,7 @@ const SectionTitle = styled(Typography)({
 
 const SeeMoreButton = styled(Button)({
     backgroundColor: "#113f67",
-    color: "#87c0cd",
+    color: "#ffffff",
     marginTop: "20px",
 });
 
@@ -68,7 +68,10 @@ const Marketplace = () => {
                     <Grid container spacing={2}>
                         {yourProjects.map((project: ProjectType) => (
                             <Grid item xs={6} sm={4} key={project.id}>
-                                <Project project={project} />
+                                <Project
+                                    project={project}
+                                    link={`/marketplace/projects/${project.id}`}
+                                />
                             </Grid>
                         ))}
                     </Grid>
@@ -82,7 +85,10 @@ const Marketplace = () => {
                     <Grid container spacing={2}>
                         {trendingProjects.map((project: ProjectType) => (
                             <Grid item xs={6} sm={4} key={project.id}>
-                                <Project project={project} />
+                                <Project
+                                    project={project}
+                                    link={`/marketplace/projects/${project.id}`}
+                                />
                             </Grid>
                         ))}
                     </Grid>

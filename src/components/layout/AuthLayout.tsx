@@ -13,7 +13,8 @@ const AuthLayout = () => {
             try {
                 const user = await authUtils.isAuthenticated()
                 if (user) {
-                    navigate('/')
+                    setLoading(false);
+                    navigate("/marketplace");
                 }
             } catch (e) {
                 setLoading(false)

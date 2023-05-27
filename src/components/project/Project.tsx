@@ -1,5 +1,11 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    CardActionArea,
+} from "@mui/material";
 import { styled } from "@mui/system";
 
 interface ProjectType {
@@ -18,13 +24,15 @@ const ProjectImage = styled(CardMedia)({
     paddingTop: "100%", // 1:1 aspect ratio
 });
 
-const Project = ({ project }: { project: ProjectType }) => (
+const Project = ({ project, link }: { project: ProjectType; link: string }) => (
     <ProjectCard>
-        <ProjectImage image={project.image} />
-        <CardContent>
-            <Typography variant="h6">{project.name}</Typography>
-            <Typography variant="subtitle1">{project.country}</Typography>
-        </CardContent>
+        <CardActionArea href={link}>
+            <ProjectImage image={project.image} />
+            <CardContent>
+                <Typography variant="h6">{project.name}</Typography>
+                <Typography variant="subtitle1">{project.country}</Typography>
+            </CardContent>
+        </CardActionArea>
     </ProjectCard>
 );
 
