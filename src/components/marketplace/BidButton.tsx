@@ -25,7 +25,7 @@ const BidButton = () => {
 
     return (
         <div>
-            <Button variant="contained" onClick={handleOpen}>
+            <Button sx={{mr: "0"}} variant="contained" onClick={handleOpen}>
                 Place Bid
             </Button>
 
