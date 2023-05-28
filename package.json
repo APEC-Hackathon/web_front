@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@headlessui/react": "^1.7.14",
+    "@heroicons/react": "^2.0.18",
     "@mui/icons-material": "^5.10.9",
     "@mui/lab": "^5.0.0-alpha.131",
     "@mui/material": "^5.10.12",
@@ -19,15 +21,29 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.26",
+    "antd": "^5.5.1",
     "axios": "^1.4.0",
+    "bulma": "^0.9.4",
     "fastapi": "^0.0.8",
+    "framer-motion": "^10.12.16",
+    "i18next": "^22.5.0",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-xhr-backend": "^3.2.2",
     "react": "^18.2.0",
+    "react-awesome-reveal": "^4.2.3",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.3.1",
     "react-redux": "^8.0.4",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "typescript": "^5.0.4",
+    "react-router-dom": "^6.11.2",
+    "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
+    "react-scroll-parallax": "^3.4.2",
+    "styled-components": "^5.3.11",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -59,6 +75,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-scroll": "^1.8.7",
     "openapi-typescript-codegen": "^0.24.0"
   },
   "homepage": "http://139.162.139.182"

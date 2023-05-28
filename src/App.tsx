@@ -6,6 +6,7 @@ import Login from "./pages/userAuth/Login";
 import Signup from "./pages/userAuth/Signup";
 import ProblemDetailsPage from "./pages/marketplace/ProblemDetailsPage";
 import CollaborationDetailsPage from "./pages/marketplace/CollaborationDetailsPage";
+import HomePage from "./pages/home/HomePage";
 import React, { useEffect, useState } from "react";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/">
+                    <Route path="/" element={<HomePage />} />
+                </Route>
                 <Route path="/" element={<AuthLayout />}>
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<Signup />} />

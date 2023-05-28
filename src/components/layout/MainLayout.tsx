@@ -3,12 +3,12 @@ import { Box, Toolbar } from "@mui/material";
 import colorConfigs from "../../configs/colorConfigs";
 import sizeConfigs from "../../configs/sizeConfigs";
 import Sidebar from "../common/Sidebar";
-import Topbar from "../common/Topbar";
 import {useEffect, useState} from "react";
 import authUtils from "../../utils/authUtils";
 import {useDispatch} from "react-redux";
 import {setUser} from "../../redux/features/userSlice";
 import Loading from "../common/Loading";
+import Topbar from "../common/Topbar";
 
 const MainLayout = () => {
     const navigate = useNavigate()
