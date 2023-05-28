@@ -20,7 +20,6 @@ const MainLayout = () => {
                 const user = await authUtils.isAuthenticated()
                 if (user) {
                     dispatch(setUser(user))
-                    setLoading(false)
                 }
             } catch (e) {
                 setLoading(false)
@@ -28,7 +27,7 @@ const MainLayout = () => {
                 navigate('/login')
             }
         }
-        checkAuth()
+        checkAuth().finally(() => setLoading(false))
     }, [])
   return (
       loading ? (

@@ -11,6 +11,7 @@ export type UserCreate = {
     organization_description?: string;
     organization_rating?: number;
     country?: string;
+    avatar_url?: string;
     password: string;
 };
 

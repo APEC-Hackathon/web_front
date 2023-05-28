@@ -16,8 +16,10 @@ const authApi = {
         OpenAPI.BASE = "http://172.104.229.42:8000"
         OpenAPI.CREDENTIALS = "include"
         return ProfileService.readUsersMeApiV1ProfileMeGet()
+    },
+    logout: () => {
+        localStorage.removeItem('token')
     }
-    // Verify Token?
 }
 
 export default authApi

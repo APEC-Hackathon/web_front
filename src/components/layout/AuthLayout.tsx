@@ -20,7 +20,7 @@ const AuthLayout = () => {
                 console.log(e)
             }
         }
-        checkAuth()
+        checkAuth().finally(() => setLoading(false))
     }, [])
 
     return (

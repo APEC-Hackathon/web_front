@@ -1,4 +1,4 @@
-import { Avatar, Drawer, List, Stack, Toolbar } from "@mui/material";
+import {Avatar, Button, Drawer, IconButton, List, Stack, Toolbar} from "@mui/material";
 import assets from "../../assets";
 import colorConfigs from "../../configs/colorConfigs";
 import sizeConfigs from "../../configs/sizeConfigs";
@@ -27,9 +27,19 @@ const Sidebar = () => {
           <Stack
             sx={{ width: "100%" }}
             direction="row"
-            justifyContent="center"
+            justifyContent="left"
+            pt='12px'
           >
-            <Avatar src={assets.images.logo} />
+              <Button
+                  startIcon={
+                  <Avatar
+                    variant={"circular"}
+                    src={assets.images.logo}
+                  />}
+                  sx={{ color: 'white', fontWeight: 'bold'}}
+              >
+                  CollabMarket
+              </Button>
           </Stack>
         </Toolbar>
         {appRoutes.map((route, index) => (

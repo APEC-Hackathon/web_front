@@ -18,7 +18,7 @@ export class TranslateService {
     public static getMessageTranslatedApiV1TranslateGet(
         text: string,
         targetLang: string,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<Record<string, any>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/translate/',

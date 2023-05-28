@@ -6,6 +6,7 @@ export type Problem = {
     title?: string;
     description?: string;
     bid_deadline?: string;
+    image_url?: string;
     id?: number;
     owner_id?: number;
 };

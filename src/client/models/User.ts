@@ -11,6 +11,7 @@ export type User = {
     organization_description?: string;
     organization_rating?: number;
     country?: string;
+    avatar_url?: string;
     id?: number;
 };
 

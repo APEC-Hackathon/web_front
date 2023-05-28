@@ -6,5 +6,6 @@ export type CollaborationUpdate = {
     title?: string;
     description?: string;
     source_id?: number;
+    image_url?: string;
 };
 

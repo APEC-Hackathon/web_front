@@ -6,5 +6,6 @@ export type ProblemUpdate = {
     title?: string;
     description?: string;
     bid_deadline?: string;
+    image_url?: string;
 };
 

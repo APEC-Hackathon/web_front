@@ -72,8 +72,8 @@ export class ProblemService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/problem/{problem_id}',
-            query: {
-                'Problem_id': problemId,
+            path: {
+                'problem_id': problemId,
             },
             errors: {
                 422: `Validation Error`,
