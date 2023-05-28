@@ -35,7 +35,7 @@ const PostTextDataDisplay: React.FC<PostTextDataDisplayProps> = ({ postData }) =
                         </Typography>
                         <Typography variant="body1">{description}</Typography>
                     </Box>
-                    <Stack sx={{pt: "12px", pb: "12px", pr: "6px"}}>
+                    <Stack justifyContent="right" sx={{pt: "12px", pb: "12px", pr: "6px"}}>
                         <LikeShareSubscribe />
                         <BidButton />
                     </Stack>

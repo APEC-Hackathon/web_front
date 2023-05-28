@@ -1,13 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, ButtonGroup } from "@mui/material";
+import ShareIcon from '@mui/icons-material/Share';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import TurnedInIcon from '@mui/icons-material/TurnedIn';
+import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 
 const LikeShareSubscribe = () => {
+    const [liked, setLiked] = useState<boolean>(false);
+    const [subscribed, setSubscribed] = useState<boolean>(false);
+
+
     const handleShareClick = () => {
         // Handle share button click
     };
 
     const handleLikeClick = () => {
-        // Handle like button click
+        setLiked(!liked);
     };
 
     const handleSubscribeClick = () => {
@@ -16,14 +25,22 @@ const LikeShareSubscribe = () => {
 
     return (
         <div>
-            <ButtonGroup>
-                <Button variant="outlined" onClick={handleShareClick}>
+            <ButtonGroup sx={{ pb: "10px"}}>
+                <Button variant="outlined" onClick={handleShareClick} startIcon={<ShareIcon />}>
                     Share
                 </Button>
-                <Button variant="outlined" onClick={handleLikeClick}>
+                <Button
+                    variant="outlined"
+                    onClick={handleLikeClick}
+                    startIcon={liked ? <ThumbUpIcon /> : <ThumbUpOffAltIcon />}
+                >
                     Like
                 </Button>
-                <Button variant="outlined" onClick={handleSubscribeClick}>
+                <Button
+                    variant="outlined"
+                    onClick={handleSubscribeClick}
+                    startIcon={liked ? <TurnedInIcon /> : <TurnedInNotIcon />}
+                >
                     Subscribe
                 </Button>
             </ButtonGroup>
