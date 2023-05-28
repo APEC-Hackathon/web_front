@@ -35,10 +35,10 @@ const CollaborationDetailsPage: React.FC = () => {
     return (
         <div>
             <BasicSearchBar type={"collaboration"}/>
-            <PostMediaPlayer/> // I need to input the collaboration id here
+            <PostMediaPlayer/>
             <PostTextDataDisplay postData={collaboration}/>
-            <CollaborationSource/> // Need to input the collaboration id here too
-            <MeetTheCompany/> // I need to input the company id here
+            <CollaborationSource sourceId={collaboration.source_id}/>
+            <MeetTheCompany companyId={collaboration.owner_id}/>
         </div>
     );
 };

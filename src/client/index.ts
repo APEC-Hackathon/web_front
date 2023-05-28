@@ -14,6 +14,8 @@ export type { CollaborationBidCreate } from './models/CollaborationBidCreate';
 export type { CollaborationCreate } from './models/CollaborationCreate';
 export type { CollaborationUpdate } from './models/CollaborationUpdate';
 export type { HTTPValidationError } from './models/HTTPValidationError';
+export type { Message } from './models/Message';
+export type { MessageCreate } from './models/MessageCreate';
 export type { Problem } from './models/Problem';
 export type { ProblemBid } from './models/ProblemBid';
 export type { ProblemBidCreate } from './models/ProblemBidCreate';
@@ -26,6 +28,7 @@ export type { ValidationError } from './models/ValidationError';
 
 export { AuthService } from './services/AuthService';
 export { CollaborationService } from './services/CollaborationService';
+export { MessageService } from './services/MessageService';
 export { ProblemService } from './services/ProblemService';
 export { ProfileService } from './services/ProfileService';
 export { TranslateService } from './services/TranslateService';

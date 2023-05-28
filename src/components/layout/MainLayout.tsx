@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import authUtils from "../../utils/authUtils";
 import {useDispatch} from "react-redux";
 import {setUser} from "../../redux/features/userSlice";
+import Loading from "../common/Loading";
 
 const MainLayout = () => {
     const navigate = useNavigate()
@@ -28,9 +29,12 @@ const MainLayout = () => {
             }
         }
         checkAuth()
-    }, [navigate])
+    }, [navigate, dispatch])
   return (
-    <Box sx={{ display: "flex" }}>
+      loading ? (
+          <Loading fullHeight={100}/>
+      ) : (
+          <Box sx={{ display: "flex" }}>
       <Topbar />
       <Box
         component="nav"
@@ -55,6 +59,7 @@ const MainLayout = () => {
         <Outlet />
       </Box>
     </Box>
+      )
   );
 };
 

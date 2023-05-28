@@ -5,7 +5,6 @@ import { Problem } from '../../client';
 import BasicSearchBar from "../../components/marketplace/BasicSearchBar";
 import PostMediaPlayer from "../../components/marketplace/PostMediaPlayer";
 import PostTextDataDisplay from "../../components/marketplace/PostTextDataDisplay";
-import CollaborationSource from "../../components/marketplace/CollaborationSource";
 import MeetTheCompany from "../../components/marketplace/MeetTheCompany";
 
 const ProblemDetailsPage: React.FC = () => {
@@ -34,10 +33,9 @@ const ProblemDetailsPage: React.FC = () => {
     return (
         <div>
             <BasicSearchBar type={"problem"}/>
-            <PostMediaPlayer/> // I need to input the problem id here
+            <PostMediaPlayer/>
             <PostTextDataDisplay postData={problem}/>
-            <CollaborationSource/> // Need to input the problem id here too
-            <MeetTheCompany/> // I need to input the company id here
+            <MeetTheCompany companyId={problem.owner_id}/>
         </div>
     );
 };
