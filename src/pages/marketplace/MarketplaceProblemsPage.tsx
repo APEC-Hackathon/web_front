@@ -70,7 +70,7 @@ const Marketplace = () => {
                             <Grid item xs={6} sm={4} key={project.id}>
                                 <Project
                                     project={project}
-                                    link={`/marketplace/projects/${project.id}`}
+                                    link={`/marketplace/problem/${project.id}`}
                                 />
                             </Grid>
                         ))}
@@ -87,7 +87,7 @@ const Marketplace = () => {
                             <Grid item xs={6} sm={4} key={project.id}>
                                 <Project
                                     project={project}
-                                    link={`/marketplace/projects/${project.id}`}
+                                    link={`/marketplace/problem/${project.id}`}
                                 />
                             </Grid>
                         ))}

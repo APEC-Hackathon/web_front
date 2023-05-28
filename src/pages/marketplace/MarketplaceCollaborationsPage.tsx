@@ -72,7 +72,7 @@ const MarketplaceCollaborationsPage = () => {
                             <Grid item xs={6} sm={4} key={project.id}>
                                 <Project
                                     project={project}
-                                    link={`/marketplace/collaborations/${project.id}`}
+                                    link={`/marketplace/collaboration/${project.id}`}
                                 />
                             </Grid>
                         ))}
@@ -89,7 +89,7 @@ const MarketplaceCollaborationsPage = () => {
                             <Grid item xs={6} sm={4} key={project.id}>
                                 <Project
                                     project={project}
-                                    link={`/marketplace/collaborations/${project.id}`}
+                                    link={`/marketplace/collaboration/${project.id}`}
                                 />
                             </Grid>
                         ))}

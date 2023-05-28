@@ -29,7 +29,7 @@ const MainLayout = () => {
             }
         }
         checkAuth()
-    }, [navigate, dispatch])
+    }, [])
   return (
       loading ? (
           <Loading fullHeight={100}/>

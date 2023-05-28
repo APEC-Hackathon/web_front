@@ -16,9 +16,9 @@ const PostMediaPlayer = () => {
                         "https://api.api-ninjas.com/v1/randomimage?category=food",
                         {
                             headers: {
-                                'X-Api-Key': 'OBtZqShuHuJs0HC3LDfN4g==U3ysgJgIb2LHHCx4',
-                                'Accept': 'image/jpg'
-                            }
+                                "X-Api-Key": "OBtZqShuHuJs0HC3LDfN4g==U3ysgJgIb2LHHCx4",
+                                Accept: "image/jpg",
+                            },
                         }
                     );
 
@@ -26,8 +26,10 @@ const PostMediaPlayer = () => {
                     const reader = new FileReader();
 
                     reader.onloadend = () => {
-                        if (typeof reader.result === 'string') {
+                        if (typeof reader.result === "string") {
                             fetchedImages.push(reader.result);
+
+                            // Check if all images have been fetched
                             if (fetchedImages.length === 5) {
                                 setImages(fetchedImages);
                                 setIsLoading(false);
@@ -43,7 +45,7 @@ const PostMediaPlayer = () => {
         };
 
         fetchImages();
-    }, []);
+    }, []); // Empty dependency array ensures the effect runs only once
 
     const getRandomImages = (count: number): string[] => {
         const shuffledImages = [...images].sort(() => 0.5 - Math.random());

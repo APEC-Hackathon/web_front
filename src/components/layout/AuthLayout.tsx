@@ -13,7 +13,7 @@ const AuthLayout = () => {
             try {
                 const user = await authUtils.isAuthenticated()
                 if (user) {
-                    navigate("/marketplace");
+                    navigate("/dashboard");
                 }
             } catch (e) {
                 setLoading(false)
@@ -21,7 +21,7 @@ const AuthLayout = () => {
             }
         }
         checkAuth()
-    }, [navigate])
+    }, [])
 
     return (
         loading ? (
