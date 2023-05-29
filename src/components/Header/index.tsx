@@ -22,35 +22,6 @@ const handleChange = (language: string) => {
     i18n.changeLanguage(language);
 };
 
-const countryLanguageMap: { [country: string]: string } = {
-    English: "en",
-    Chinese: "zh",
-    // Add other countries and their language codes here
-};
-
-const LanguageDropdown = () => {
-    const { Option } = Select;
-
-    const handleMenuClick = (country: string) => {
-        const language = countryLanguageMap[country];
-        handleChange(language);
-    };
-
-    return (
-        <Select
-            defaultValue="English"
-            style={{ width: 120 }}
-            onChange={handleMenuClick}
-        >
-            {Object.keys(countryLanguageMap).map((country) => (
-                <Option key={country} value={country}>
-                    {country}
-                </Option>
-            ))}
-        </Select>
-    );
-};
-
 const Header = ({ t }: any) => {
     const navigate = useNavigate();
     const [visible, setVisibility] = useState(false);
@@ -79,7 +50,6 @@ const Header = ({ t }: any) => {
                 <CustomNavLinkSmall onClick={() => navigate("/collaborations")}>
                     <Span>{t("Collaborations")}</Span>
                 </CustomNavLinkSmall>
-                <LanguageDropdown />
                 <CustomNavLinkSmall
                     style={{ width: "180px" }}
                     onClick={() => navigate("/login")}

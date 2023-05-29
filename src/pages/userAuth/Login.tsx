@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, TextField, Alert } from '@mui/material'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LoadingButton from '@mui/lab/LoadingButton'
@@ -9,15 +9,17 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [usernameErrText, setUsernameErrText] = useState('')
   const [passwordErrText, setPasswordErrText] = useState('')
+  const [loginError, setLoginError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setUsernameErrText('')
     setPasswordErrText('')
+    setLoginError('')
 
     const data = new FormData(e.currentTarget as HTMLFormElement)
-    const username = data.get('username')?.toString().trim() || '';
-    const password = data.get('password')?.toString().trim() || '';
+    const username = data.get('username')?.toString().trim() || ''
+    const password = data.get('password')?.toString().trim() || ''
 
     let err = false
 
@@ -41,6 +43,7 @@ const Login = () => {
       navigate('/dashboard')
     } catch (err) {
       setLoading(false)
+      setLoginError('Login failed. Please check your credentials.')
     }
   }
 
@@ -75,6 +78,11 @@ const Login = () => {
           error={passwordErrText !== ''}
           helperText={passwordErrText}
         />
+        {loginError && (
+          <Alert severity="error" sx={{ mt: 2 }}>
+            {loginError}
+          </Alert>
+        )}
         <LoadingButton
           sx={{ mt: 3, mb: 2 }}
           variant='outlined'
@@ -92,6 +100,9 @@ const Login = () => {
         sx={{ textTransform: 'none' }}
       >
         Don't have an account? Signup
+      </Button>
+      <Button component={Link} to="/" sx={{ textTransform: 'none' }}>
+        Back to Home page
       </Button>
     </>
   )
