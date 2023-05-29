@@ -41,7 +41,8 @@ const CompanyProblems = ({userId}: CompanyProblemsProps) => {
     return (
         <Paper>
             <ImageList sx={{ width: 500, height: 450 }}>
-                {problems!.map((problem) => (
+                {problems ?
+                problems!.map((problem) => (
                     <Card sx={{ maxWidth: 345 }}>
                         <CardHeader
                             avatar={
@@ -77,7 +78,7 @@ const CompanyProblems = ({userId}: CompanyProblemsProps) => {
                             </IconButton>
                         </CardActions>
                     </Card>
-                ))}
+                )) : <div>no problems</div>}
             </ImageList>
         </Paper>
     )

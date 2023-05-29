@@ -13,7 +13,7 @@ const MeetTheCompany = ({ companyId }: MeetTheCompanyProps) => {
 
     const navigate = useNavigate();
     const handleClickViewCompany = async () => {
-        navigate('/company-details/' + companyId);
+        navigate('/profile/' + companyId);
     };
 
     useEffect(() => {

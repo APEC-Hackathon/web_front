@@ -7,37 +7,37 @@ import {
     IconButton,
     Typography
 } from "@mui/material";
-import {red} from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
-import {User} from "../../client";
+import {Problem, User} from "../../client";
 import {useEffect, useState} from "react";
 import userApi from "../../api/userApi";
 import {useNavigate} from "react-router-dom";
+import problemApi from "../../api/problemApi";
 
-interface CompanyCardProps {
-    companyId: number | null
+interface ProblemCardProps {
+    problemId: number | null
 }
 
-const CompanyCard = ({companyId}: CompanyCardProps) => {
-    const [company, setCompany] = useState<User | null>(null);
+const ProblemCard = ({problemId}: ProblemCardProps) => {
+    const [problem, setProblem] = useState<Problem | null>(null);
 
     useEffect(() => {
-        const fetchCollaboration = async () => {
+        const fetchProblem = async () => {
             try {
-                if (companyId) {
-                    const user = await userApi.getUserById(companyId); // Parse id as a number
-                    setCompany(user);
+                if (problemId) {
+                    const problem1 = await problemApi.getProblemById(problemId); // Parse id as a number
+                    setProblem(problem1);
                 }
             } catch (error) {
-                console.error('Error fetching collaboration:', error);
+                console.error('Error fetching problem:', error);
             }
         };
 
-        fetchCollaboration();
-    }, [companyId]);
+        fetchProblem();
+    }, [problemId]);
 
     const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
     }
 
     const handleProfileClick = () => {
-        navigate(`/profile/${companyId}`)
+        navigate(`/marketplace/problem/${problemId}`)
     }
     return (
         <Card sx={{maxWidth: 345}}>
@@ -56,19 +56,19 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
                         <MoreVertIcon/>
                     </IconButton>
                 }
-                title={company?.organization_name ? company.organization_name : "Organization Name"}
+                title={problem?.title ? problem.title : "Problem Title"}
             />
             <Button onClick={handleProfileClick}>
                 <CardMedia
                     component="img"
                     height="194"
-                    image={company?.avatar_url ? company.avatar_url : "https://mui.com/static/images/cards/paella.jpg"}
-                    alt={company?.organization_name}
+                    image={problem?.image_url ? problem.image_url : "https://mui.com/static/images/cards/paella.jpg"}
+                    alt={problem?.title}
                 />
             </Button>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    {company?.organization_description ? company.organization_description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                    {problem?.description ? problem.description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                         "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi " +
                         "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " +
                         "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
@@ -90,4 +90,4 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
     );
 };
 
-export default CompanyCard;
+export default ProblemCard;

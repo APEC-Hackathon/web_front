@@ -7,29 +7,28 @@ import {
     IconButton,
     Typography
 } from "@mui/material";
-import {red} from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
-import {User} from "../../client";
+import {Collaboration, User} from "../../client";
 import {useEffect, useState} from "react";
-import userApi from "../../api/userApi";
 import {useNavigate} from "react-router-dom";
+import collaborationApi from "../../api/collaborationApi";
 
-interface CompanyCardProps {
-    companyId: number | null
+interface CollaborationCardProps {
+    collaborationId: number | null
 }
 
-const CompanyCard = ({companyId}: CompanyCardProps) => {
-    const [company, setCompany] = useState<User | null>(null);
+const CollaborationCard = ({collaborationId}: CollaborationCardProps) => {
+    const [collaboration, setCollaboration] = useState<Collaboration | null>(null);
 
     useEffect(() => {
         const fetchCollaboration = async () => {
             try {
-                if (companyId) {
-                    const user = await userApi.getUserById(companyId); // Parse id as a number
-                    setCompany(user);
+                if (collaborationId) {
+                    const collaboration1 = await collaborationApi.getCollaborationById(collaborationId); // Parse id as a number
+                    setCollaboration(collaboration1);
                 }
             } catch (error) {
                 console.error('Error fetching collaboration:', error);
@@ -37,7 +36,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
         };
 
         fetchCollaboration();
-    }, [companyId]);
+    }, [collaborationId]);
 
     const navigate = useNavigate();
 
@@ -46,7 +45,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
     }
 
     const handleProfileClick = () => {
-        navigate(`/profile/${companyId}`)
+        navigate(`/marketplace/collaboration/${collaborationId}`)
     }
     return (
         <Card sx={{maxWidth: 345}}>
@@ -56,19 +55,19 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
                         <MoreVertIcon/>
                     </IconButton>
                 }
-                title={company?.organization_name ? company.organization_name : "Organization Name"}
+                title={collaboration?.title ? collaboration.title : "Collaboration Title"}
             />
             <Button onClick={handleProfileClick}>
                 <CardMedia
                     component="img"
                     height="194"
-                    image={company?.avatar_url ? company.avatar_url : "https://mui.com/static/images/cards/paella.jpg"}
-                    alt={company?.organization_name}
+                    image={collaboration?.image_url ? collaboration.image_url : "https://mui.com/static/images/cards/paella.jpg"}
+                    alt={collaboration?.title}
                 />
             </Button>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    {company?.organization_description ? company.organization_description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                    {collaboration?.description ? collaboration.description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                         "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi " +
                         "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " +
                         "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
@@ -90,4 +89,4 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
     );
 };
 
-export default CompanyCard;
+export default CollaborationCard;
