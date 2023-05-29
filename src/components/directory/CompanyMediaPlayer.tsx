@@ -6,7 +6,11 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Box, Stack} from "@mui/material";
 
-const PostMediaPlayer = () => {
+interface CompanyMediaPlayerProps {
+    userMedia: string | undefined;
+}
+
+const CompanyMediaPlayer = ({userMedia}: CompanyMediaPlayerProps) => {
     const [nav1, setNav1] = useState<Slider | null>(null);
     const [nav2, setNav2] = useState<Slider | null>(null);
     const slider1 = useRef<Slider | null>(null);
@@ -90,26 +94,26 @@ const PostMediaPlayer = () => {
             </Box>
             <Box sx={{ width: "15%", height: "100%" }}>
                 <div className="thumbnail-slider-wrap">
-                <Slider
-                    {...settingsThumbs}
-                    asNavFor={nav1!}
-                    ref={(slider) => (slider2.current = slider)}
-                    vertical={true}
-                >
-                    {slidesData.map((slide) => (
-                        <div className="slick-slide" key={slide.id}>
-                            <img
-                                className="slick-slide-image"
-                                src={`https://picsum.photos/1920/1080?img=${slide.id}`}
-                                alt={slide.title}
-                            />
-                        </div>
-                    ))}
-                </Slider>
+                    <Slider
+                        {...settingsThumbs}
+                        asNavFor={nav1!}
+                        ref={(slider) => (slider2.current = slider)}
+                        vertical={true}
+                    >
+                        {slidesData.map((slide) => (
+                            <div className="slick-slide" key={slide.id}>
+                                <img
+                                    className="slick-slide-image"
+                                    src={`https://picsum.photos/1920/1080?img=${slide.id}`}
+                                    alt={slide.title}
+                                />
+                            </div>
+                        ))}
+                    </Slider>
                 </div>
             </Box>
         </Stack>
     );
 };
 
-export default PostMediaPlayer;
+export default CompanyMediaPlayer;

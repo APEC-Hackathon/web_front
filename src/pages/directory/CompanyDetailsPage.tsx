@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import collaborationApi from '../../api/collaborationApi';
-import {Collaboration} from "../../client";
-import PostTextDataDisplay from "../../components/marketplace/PostTextDataDisplay";
-import PostMediaPlayer from "../../components/marketplace/PostMediaPlayer";
-import CollaborationSource from "../../components/marketplace/CollaborationSource";
-import MeetTheCompany from "../../components/marketplace/MeetTheCompany";
-
+import CompanyMediaPlayer from "../../components/directory/CompanyMediaPlayer";
+import CompanyTextDataDisplay from "../../components/directory/CompanyTextDataDisplay";
+import CompanyProblems from "../../components/directory/CompanyProblems";
+import CompanyCollaborations from "../../components/directory/CompanyCollaborations";
+import userApi from "../../api/userApi";
+import {User} from "../../client";
 
 const CompanyDetailsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const [collaboration, setCollaboration] = useState<Collaboration | null>(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         const fetchCollaboration = async () => {
             try {
                 if (id) {
-                    const collaboration = await collaborationApi.getCollaborationById(parseInt(id)); // Parse id as a number
-                    setCollaboration(collaboration);
+                    const user = await userApi.getUserById(parseInt(id)); // Parse id as a number
+                    setUser(user);
                 }
             } catch (error) {
                 console.error('Error fetching collaboration:', error);
@@ -27,19 +26,16 @@ const CompanyDetailsPage: React.FC = () => {
         fetchCollaboration();
     }, [id]);
 
-    if (!collaboration) {
+    if (!user) {
         return <div>Loading...</div>;
     }
 
     return (
         <div>
-            {/*<CompanyMediaPlayer/>*/}
-            {/*<CompanyTextDataDisplay/>*/}
-            {/*<CompanyCollaboration/>*/}
-            <PostMediaPlayer/>
-            <PostTextDataDisplay postData={collaboration} type={"collaboration"}/>
-            <CollaborationSource sourceId={collaboration.source_id}/>
-            <MeetTheCompany companyId={collaboration.owner_id}/>
+            <CompanyMediaPlayer userMedia={user.avatar_url!}/>
+            <CompanyTextDataDisplay userData={user}/>
+            <CompanyProblems userId={user.id!}/>
+            <CompanyCollaborations userId={user.id!}/>
         </div>
     );
 };

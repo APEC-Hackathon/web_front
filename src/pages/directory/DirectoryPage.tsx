@@ -1,102 +1,53 @@
-import React from "react";
-import { Grid, Button, Box, Typography } from "@mui/material";
-import { styled } from "@mui/system";
-import Project from "../../components/project/Project";
-
-interface ProjectType {
-  id: string;
-  image: string;
-  name: string;
-  country: string;
-}
-
-const SectionTitle = styled(Typography)({
-  color: "#113f67",
-  marginBottom: "20px",
-});
-
-const SeeMoreButton = styled(Button)({
-  backgroundColor: "#113f67",
-  color: "#ffffff",
-  marginTop: "20px",
-});
+import React, {useEffect} from "react";
+import {Grid, Button, Box, Typography} from "@mui/material";
+import InfiniteScroll from 'react-infinite-scroller';
+import CompanyCard from "../../components/directory/CompanyCard";
+import userApi from "../../api/userApi";
+import {User} from "../../client";
 
 const DirectoryPage = () => {
-  const yourProjects: ProjectType[] = [
-    {
-      id: "1",
-      image: "https://via.placeholder.com/150",
-      name: "Project 1",
-      country: "Country 1",
-    },
-    {
-      id: "1",
-      image: "https://via.placeholder.com/150",
-      name: "Project 1",
-      country: "Country 1",
-    },
-    // Add more projects...
-  ];
+    const [users, setUsers] = React.useState<User[]>([]);
+    const [reloadCount, setReloadCount] = React.useState<number>(0);
+    const [hasMore, setHasMore] = React.useState<boolean>(true);
+    const fetchCompanies = async () => {
+        try {
+            if (reloadCount > 10) {
+              setHasMore(false);
+              return;
+            }
+            // To change to retrieve a limit of 10
+            const moreUsers = await userApi.getAllUsers()
+            setUsers([...users, ...moreUsers]);
+            setReloadCount((reloadCount) => reloadCount + 1);
+        } catch (error) {
+            console.error("Error fetching user problems:", error);
+        }
+    };
 
-  const trendingProjects: ProjectType[] = [
-    {
-      id: "1",
-      image: "https://via.placeholder.com/150",
-      name: "Trending Project 1",
-      country: "Country 1",
-    },
-    {
-      id: "1",
-      image: "https://via.placeholder.com/150",
-      name: "Trending Project 1",
-      country: "Country 1",
-    },
-    {
-      id: "1",
-      image: "https://via.placeholder.com/150",
-      name: "Trending Project 1",
-      country: "Country 1",
-    },
-    // Add more projects...
-  ];
-
-  return (
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <SectionTitle variant="h4">Your Projects</SectionTitle>
-            <Grid container spacing={2}>
-              {yourProjects.map((project: ProjectType) => (
-                  <Grid item xs={6} sm={4} key={project.id}>
-                    <Project
-                        project={project}
-                        link={`/marketplace/problem/${project.id}`}
-                    />
-                  </Grid>
-              ))}
+    return (
+        <InfiniteScroll
+            pageStart={0}
+            loadMore={fetchCompanies}
+            hasMore={hasMore}
+            loader={
+                <div className="loader" key="loader">
+                    Loading ...
+                </div>
+            }
+        >
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                {users!.map((user) => (<CompanyCard companyId={user.id!}/>))}
             </Grid>
-            <SeeMoreButton>See More</SeeMoreButton>
-          </Grid>
-
-          <Grid item xs={12}>
-            <SectionTitle variant="h4">
-              Trending Projects For You
-            </SectionTitle>
-            <Grid container spacing={2}>
-              {trendingProjects.map((project: ProjectType) => (
-                  <Grid item xs={6} sm={4} key={project.id}>
-                    <Project
-                        project={project}
-                        link={`/marketplace/problem/${project.id}`}
-                    />
-                  </Grid>
-              ))}
-            </Grid>
-            <SeeMoreButton>See More</SeeMoreButton>
-          </Grid>
-        </Grid>
-      </Box>
-  );
+            {!hasMore && (
+                <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
+                <Typography variant="h6" component="div" gutterBottom>
+                    That's all folks!
+                </Typography>
+                </Box>
+                )
+            }
+        </InfiniteScroll>
+    )
 };
 
 export default DirectoryPage;
