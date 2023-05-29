@@ -1,4 +1,4 @@
-import {Box, TextField} from "@mui/material";
+import {Box, Stack, TextField} from "@mui/material";
 import dayjs, { Dayjs } from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -54,42 +54,46 @@ const CreateProblemPage = () => {
             onSubmit={handleSubmit}
             noValidate
         >
-          <TextField
-              error={titleMt}
-              required
-              name="title"
-              id="title"
-              label="Title"
-              helperText="The title of your problem"
-          />
-          <TextField
-              error={descriptionMt}
-              required
-              id="desc-required"
-              name="description"
-              label="Description"
-              multiline
-              maxRows={4}
-              helperText="The description of your problem"
-          />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']}>
-                  <DatePicker
-                      label="Bid Deadline"
-                      value={bidDeadline}
-                      onChange={(newValue) => setBidDeadline(newValue)}
-                  />
-              </DemoContainer>
-          </LocalizationProvider>
-          <TextField
-              name="image"
-              error={imageMt}
-              required
-              id="image-required"
-              defaultValue="https://"
-              label="Image URL"
-              helperText="The image of your problem"
-          />
+            <Stack direction="column" spacing={2}>
+                <TextField
+                    error={titleMt}
+                    required
+                    name="title"
+                    id="title"
+                    label="Title"
+                    helperText="The title of your problem"
+                />
+                <TextField
+                    error={descriptionMt}
+                    required
+                    id="desc-required"
+                    name="description"
+                    label="Description"
+                    multiline
+                    maxRows={4}
+                    helperText="The description of your problem"
+                />
+                <Box sx={{pb:"15px"}}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={['DatePicker']}>
+                            <DatePicker
+                                label="Bid Deadline"
+                                value={bidDeadline}
+                                onChange={(newValue) => setBidDeadline(newValue)}
+                            />
+                        </DemoContainer>
+                    </LocalizationProvider>
+                </Box>
+                <TextField
+                    name="image"
+                    error={imageMt}
+                    required
+                    id="image-required"
+                    defaultValue="https://"
+                    label="Image URL"
+                    helperText="The image of your problem"
+                />
+            </Stack>
           <LoadingButton
               sx={{ mt: 3, mb: 2 }}
               variant='outlined'

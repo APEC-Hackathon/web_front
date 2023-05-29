@@ -1,4 +1,4 @@
-import {Box, TextField} from "@mui/material";
+import {Box, Stack, TextField} from "@mui/material";
 import React, {useState} from "react";
 import collaborationApi from "../../api/collaborationApi";
 import {useNavigate} from "react-router-dom";
@@ -28,7 +28,7 @@ const CreateCollaborationPage = () => {
         if (description === '') {
             setDescriptionMt(true);
         }
-        if (sourceId === -1) {
+        if (sourceId < 0) {
             setSourceMt(true);
         }
         if (image === '') {
@@ -53,39 +53,44 @@ const CreateCollaborationPage = () => {
             onSubmit={handleSubmit}
             noValidate
         >
-            <TextField
-                error={titleMt}
-                required
-                id="title-required"
-                label="Title"
-                helperText="The title of your collaboration"
-            />
-            <TextField
-                error={descriptionMt}
-                required
-                id="desc-required"
-                label="Description"
-                multiline
-                maxRows={4}
-                helperText="The description of your collaboration"
-            />
-            <TextField
-                error={sourceMt}
-                required
-                type="number"
-                id="desc-required"
-                label="Source ID"
-                multiline
-                maxRows={4}
-                helperText="The ID of the problem"
-            />
-            <TextField
-                error={imageMt}
-                required
-                id="image-required"
-                label="Image URL"
-                helperText="The image of your collaboration"
-            />
+            <Stack direction="column" spacing={2}>
+                <TextField
+                    name="title"
+                    error={titleMt}
+                    required
+                    id="title-required"
+                    label="Title"
+                    helperText="The title of your collaboration"
+                />
+                <TextField
+                    name="description"
+                    error={descriptionMt}
+                    required
+                    id="desc-required"
+                    label="Description"
+                    multiline
+                    maxRows={4}
+                    helperText="The description of your collaboration"
+                />
+                <TextField
+                    name="sourceId"
+                    error={sourceMt}
+                    required
+                    type="number"
+                    id="desc-required"
+                    label="Source ID"
+                    helperText="The ID of the problem"
+                />
+                <TextField
+                    name="image"
+                    error={imageMt}
+                    required
+                    id="image-required"
+                    defaultValue="https://"
+                    label="Image URL"
+                    helperText="The image of your collaboration"
+                />
+            </Stack>
             <LoadingButton
                 sx={{ mt: 3, mb: 2 }}
                 variant='outlined'
