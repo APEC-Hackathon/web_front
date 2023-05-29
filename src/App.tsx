@@ -9,6 +9,8 @@ import CollaborationDetailsPage from "./pages/marketplace/CollaborationDetailsPa
 import HomePage from "./pages/home/HomePage";
 import React, { useEffect, useState } from "react";
 import CompanyProfilePage from "./pages/directory/CompanyProfilePage";
+import CreateProblemPage from "./pages/marketplace/CreateProblemPage";
+import CreateCollaborationPage from "./pages/marketplace/CreateCollaborationPage";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,6 +46,14 @@ function App() {
                     <Route
                         path="profile/:id"
                         element={<CompanyProfilePage />}
+                    />
+                    <Route
+                        path="marketplace/problem/create"
+                        element={<CreateProblemPage />}
+                    />
+                    <Route
+                        path="marketplace/collaboration/create"
+                        element={<CreateCollaborationPage />}
                     />
                     {isAuthenticated && routes}
                 </Route>

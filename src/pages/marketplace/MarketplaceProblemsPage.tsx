@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import {Grid, Button, Box, Typography, Stack} from "@mui/material";
+import React from "react";
+import {Grid, Box, Typography, Stack} from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroller';
 import {Problem} from "../../client";
 import problemApi from "../../api/problemApi";

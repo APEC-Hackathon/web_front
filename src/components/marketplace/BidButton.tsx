@@ -24,12 +24,12 @@ const BidButton: React.FC<BidButtonProps> = ({type, id}) => {
         try {
             if (type === "collaboration") {
                 console.log("Collab created:", bidAmount);
-                const bid = await collaborationApi.createCollaborationRequest(id!, bidAmount);
+                await collaborationApi.createCollaborationRequest(id!, bidAmount);
             }
             if (type === "problem") {
                 console.log("Problem created with bid:", bidAmount);
                 console.log("Problem created with id:", id!);
-                const bid = await problemApi.createProblemBid(id!, bidAmount);
+                await problemApi.createProblemBid(id!, bidAmount);
             }
         } catch (error) {
             console.error("Error creating bid:", error);

@@ -1,4 +1,4 @@
-import {Avatar, Button, Drawer, IconButton, List, Stack, Toolbar} from "@mui/material";
+import {Avatar, Button, Drawer, List, Stack, Toolbar} from "@mui/material";
 import assets from "../../assets";
 import colorConfigs from "../../configs/colorConfigs";
 import sizeConfigs from "../../configs/sizeConfigs";

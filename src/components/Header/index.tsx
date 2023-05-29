@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Row, Col, Drawer, Select } from "antd";
+import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
@@ -16,11 +16,6 @@ import {
     Span,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
-import i18n from "i18next";
-
-const handleChange = (language: string) => {
-    i18n.changeLanguage(language);
-};
 
 const Header = ({ t }: any) => {
     const navigate = useNavigate();

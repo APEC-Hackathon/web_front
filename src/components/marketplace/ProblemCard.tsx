@@ -11,9 +11,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
-import {Problem, User} from "../../client";
+import {Problem} from "../../client";
 import {useEffect, useState} from "react";
-import userApi from "../../api/userApi";
 import {useNavigate} from "react-router-dom";
 import problemApi from "../../api/problemApi";
 
