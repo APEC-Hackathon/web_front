@@ -61,7 +61,7 @@ const ProblemCard = ({problemId}: ProblemCardProps) => {
                 <CardMedia
                     component="img"
                     height="194"
-                    image={problem?.image_url ? problem.image_url : "https://mui.com/static/images/cards/paella.jpg"}
+                    image={problem?.image_url ? `https://picsum.photos/1920/1080?img=${problemId}` : `https://picsum.photos/1920/1080?img=${problemId}`}
                     alt={problem?.title}
                 />
             </Button>

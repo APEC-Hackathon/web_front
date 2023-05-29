@@ -61,7 +61,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
                 <CardMedia
                     component="img"
                     height="194"
-                    image={company?.avatar_url ? company.avatar_url : "https://mui.com/static/images/cards/paella.jpg"}
+                    image={company?.avatar_url ? "https://picsum.photos/1920/1080?img=1" : 'https://picsum.photos/1920/1080?img=1'}
                     alt={company?.organization_name}
                 />
             </Button>

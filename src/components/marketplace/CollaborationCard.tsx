@@ -61,7 +61,7 @@ const CollaborationCard = ({collaborationId}: CollaborationCardProps) => {
                 <CardMedia
                     component="img"
                     height="194"
-                    image={collaboration?.image_url ? collaboration.image_url : "https://mui.com/static/images/cards/paella.jpg"}
+                    image={collaboration?.image_url ? "https://picsum.photos/1920/1080?img=1" : "https://picsum.photos/1920/1080?img=1"}
                     alt={collaboration?.title}
                 />
             </Button>

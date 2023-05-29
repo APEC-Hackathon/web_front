@@ -105,7 +105,7 @@ const ChatPage: React.FC = () => {
         socketRef.current.close();
       }
     };
-  }, [fetchMessages]);
+  }, [fetchMessages, myId]);
 
   useEffect(() => {
     if (appBodyRef.current) {
@@ -133,7 +133,7 @@ const ChatPage: React.FC = () => {
     setInput('');
 
     try {
-      messageApi.sendMesage(5, input); 
+      messageApi.sendMesage(parseInt(id!), input);
     } catch (error) {
       console.error('Error sending message:', error);
     }
