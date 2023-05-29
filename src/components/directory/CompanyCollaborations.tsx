@@ -41,7 +41,7 @@ const CompanyCollaborations = ({userId}: CompanyCollaborationsProps) => {
     return (
         <Paper>
             <ImageList sx={{ width: 500, height: 450 }}>
-                {collaborations!.map((collaboration) => (
+                {collaborations ? collaborations!.map((collaboration) => (
                     <Card sx={{ maxWidth: 345 }}>
                         <CardHeader
                             avatar={
@@ -76,7 +76,7 @@ const CompanyCollaborations = ({userId}: CompanyCollaborationsProps) => {
                             </IconButton>
                         </CardActions>
                     </Card>
-                ))}
+                )) : <div>There are no collaborations</div>}
             </ImageList>
 
         </Paper>

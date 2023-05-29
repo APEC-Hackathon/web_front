@@ -7,7 +7,7 @@ import CompanyCollaborations from "../../components/directory/CompanyCollaborati
 import userApi from "../../api/userApi";
 import {User} from "../../client";
 
-const CompanyDetailsPage: React.FC = () => {
+const CompanyProfilePage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [user, setUser] = useState<User | null>(null);
 
@@ -40,4 +40,4 @@ const CompanyDetailsPage: React.FC = () => {
     );
 };
 
-export default CompanyDetailsPage;
+export default CompanyProfilePage;
