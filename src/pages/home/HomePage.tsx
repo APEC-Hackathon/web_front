@@ -12,6 +12,22 @@ const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
 
 const Home = () => {
+  useEffect(() => {
+    // Scroll up at the start
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "auto" });
+
+    const handleLoad = () => {
+      window.removeEventListener("load", handleLoad); // Remove the load event listener
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    window.addEventListener("load", handleLoad);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
+  }, []);
+
   return (
     <Container>
       <Header />
