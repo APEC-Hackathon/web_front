@@ -3,15 +3,16 @@ import {setBaseURL, setCredentials, setHeaders} from "./utils";
 
 const authApi = {
     getUserById: (userId: number) => {
-        setBaseURL()
-        setHeaders()
+        setBaseURL(); setHeaders()
         return ProfileService.readUserByIdApiV1ProfileUserIdGet(userId)
     },
     getAllUsers: () => {
-        setBaseURL()
-        setHeaders()
-        setCredentials()
+        setBaseURL(); setHeaders(); setCredentials()
         return ProfileService.getAllUserApiV1ProfileAllGet()
+    },
+    getMe: () => {
+        setBaseURL(); setHeaders(); setCredentials()
+        return ProfileService.readUsersMeApiV1ProfileMeGet()
     }
 }
 
