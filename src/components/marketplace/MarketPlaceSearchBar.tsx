@@ -1,5 +1,5 @@
 import {TextField, Autocomplete, Box, Stack} from "@mui/material";
-import { useState, ChangeEvent, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import collaborationApi from "../../api/collaborationApi";
 import problemApi from "../../api/problemApi";
 import { Collaboration, Problem } from "../../client";

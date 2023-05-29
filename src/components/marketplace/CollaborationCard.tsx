@@ -11,7 +11,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
-import {Collaboration, User} from "../../client";
+import {Collaboration} from "../../client";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import collaborationApi from "../../api/collaborationApi";

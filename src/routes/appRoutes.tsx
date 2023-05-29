@@ -1,5 +1,4 @@
 import DashboardPageLayout from "../pages/dashboard/DashboardPageLayout";
-import HomePage from "../pages/home/HomePage";
 import { RouteType } from "./config";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';

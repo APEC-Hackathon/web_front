@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {Avatar, Box, Button, Container, Paper, Stack, Typography} from "@mui/material";
-import userApi from "../../api/userApi";
 import {Problem} from "../../client";
 import {useNavigate} from "react-router-dom";
-import collaborationApi from "../../api/collaborationApi";
 import problemApi from "../../api/problemApi";
 
 interface CollaborationSourceProps {

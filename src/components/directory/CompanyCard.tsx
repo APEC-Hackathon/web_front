@@ -7,7 +7,6 @@ import {
     IconButton,
     Typography
 } from "@mui/material";
-import {red} from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";

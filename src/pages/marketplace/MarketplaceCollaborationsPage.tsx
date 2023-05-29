@@ -1,10 +1,11 @@
-import React, {useEffect} from "react";
-import {Grid, Button, Box, Typography} from "@mui/material";
+import React from "react";
+import {Grid, Box, Typography, Stack} from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroller';
 import {Collaboration} from "../../client";
 import collaborationApi from "../../api/collaborationApi";
 import CollaborationCard from "../../components/marketplace/CollaborationCard";
 import MarketPlaceSearchBar from "../../components/marketplace/MarketPlaceSearchBar";
+import CreateCollaborationButton from "../../components/marketplace/CreateCollaborationButton";
 
 const MarketplaceCollaborationsPage = () => {
     const [collaborations, setUsers] = React.useState<Collaboration[]>([]);
@@ -27,7 +28,10 @@ const MarketplaceCollaborationsPage = () => {
 
     return (
         <Box>
-            <MarketPlaceSearchBar type={"collaboration"}/>
+            <Stack direction="row" alignItems="center">
+                <MarketPlaceSearchBar type={"collaboration"}/>
+                <CreateCollaborationButton/>
+            </Stack>
             <InfiniteScroll
                 pageStart={0}
                 loadMore={fetchCompanies}
