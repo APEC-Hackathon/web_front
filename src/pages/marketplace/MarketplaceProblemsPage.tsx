@@ -1,102 +1,58 @@
-import React from "react";
-import { Grid, Button, Box, Typography } from "@mui/material";
-import { styled } from "@mui/system";
-import Project from "../../components/project/Project";
+import React, {useEffect} from "react";
+import {Grid, Button, Box, Typography} from "@mui/material";
+import InfiniteScroll from 'react-infinite-scroller';
+import {Problem} from "../../client";
+import problemApi from "../../api/problemApi";
+import ProblemCard from "../../components/marketplace/ProblemCard";
+import MarketPlaceSearchBar from "../../components/marketplace/MarketPlaceSearchBar";
 
-interface ProjectType {
-    id: string;
-    image: string;
-    name: string;
-    country: string;
-}
-
-const SectionTitle = styled(Typography)({
-    color: "#113f67",
-    marginBottom: "20px",
-});
-
-const SeeMoreButton = styled(Button)({
-    backgroundColor: "#113f67",
-    color: "#ffffff",
-    marginTop: "20px",
-});
-
-const Marketplace = () => {
-    const yourProjects: ProjectType[] = [
-        {
-            id: "1",
-            image: "https://via.placeholder.com/150",
-            name: "Project 1",
-            country: "Country 1",
-        },
-        {
-            id: "1",
-            image: "https://via.placeholder.com/150",
-            name: "Project 1",
-            country: "Country 1",
-        },
-        // Add more projects...
-    ];
-
-    const trendingProjects: ProjectType[] = [
-        {
-            id: "1",
-            image: "https://via.placeholder.com/150",
-            name: "Trending Project 1",
-            country: "Country 1",
-        },
-        {
-            id: "1",
-            image: "https://via.placeholder.com/150",
-            name: "Trending Project 1",
-            country: "Country 1",
-        },
-        {
-            id: "1",
-            image: "https://via.placeholder.com/150",
-            name: "Trending Project 1",
-            country: "Country 1",
-        },
-        // Add more projects...
-    ];
+const MarketplaceProblemsPage = () => {
+    const [problems, setUsers] = React.useState<Problem[]>([]);
+    const [reloadCount, setReloadCount] = React.useState<number>(0);
+    const [hasMore, setHasMore] = React.useState<boolean>(true);
+    const fetchCompanies = async () => {
+        try {
+            if (reloadCount > 10) {
+                setHasMore(false);
+                return;
+            }
+            // To change to retrieve a limit of 10
+            const moreProblems = await problemApi.getAllProblems()
+            setUsers([...problems, ...moreProblems]);
+            setReloadCount((reloadCount) => reloadCount + 1);
+        } catch (error) {
+            console.error("Error fetching user problems:", error);
+        }
+    };
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <SectionTitle variant="h4">Your Projects</SectionTitle>
-                    <Grid container spacing={2}>
-                        {yourProjects.map((project: ProjectType) => (
-                            <Grid item xs={6} sm={4} key={project.id}>
-                                <Project
-                                    project={project}
-                                    link={`/marketplace/problem/${project.id}`}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                    <SeeMoreButton>See More</SeeMoreButton>
+        <Box>
+            <MarketPlaceSearchBar type={"problem"}/>
+            <InfiniteScroll
+                pageStart={0}
+                loadMore={fetchCompanies}
+                hasMore={hasMore}
+                loader={
+                    <div className="loader" key="loader">
+                        Loading ...
+                    </div>
+                }
+            >
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    {problems!.map((problem) => (<ProblemCard problemId={problem.id!}/>))}
                 </Grid>
+                {!hasMore && (
+                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
+                        <Typography variant="h6" component="div" gutterBottom>
+                            That's all folks!
+                        </Typography>
+                    </Box>
+                )
+                }
+            </InfiniteScroll>
 
-                <Grid item xs={12}>
-                    <SectionTitle variant="h4">
-                        Trending Projects For You
-                    </SectionTitle>
-                    <Grid container spacing={2}>
-                        {trendingProjects.map((project: ProjectType) => (
-                            <Grid item xs={6} sm={4} key={project.id}>
-                                <Project
-                                    project={project}
-                                    link={`/marketplace/problem/${project.id}`}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                    <SeeMoreButton>See More</SeeMoreButton>
-                </Grid>
-            </Grid>
         </Box>
-    );
+    )
 };
 
-export default Marketplace;
+export default MarketplaceProblemsPage;
