@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
-import {Grid, Button, Box, Typography} from "@mui/material";
+import {Grid, Button, Box, Typography, Stack} from "@mui/material";
 import InfiniteScroll from 'react-infinite-scroller';
 import {Problem} from "../../client";
 import problemApi from "../../api/problemApi";
 import ProblemCard from "../../components/marketplace/ProblemCard";
 import MarketPlaceSearchBar from "../../components/marketplace/MarketPlaceSearchBar";
+import CreateProblemButton from "../../components/marketplace/CreateProblemButton";
 
 const MarketplaceProblemsPage = () => {
     const [problems, setUsers] = React.useState<Problem[]>([]);
@@ -27,7 +28,10 @@ const MarketplaceProblemsPage = () => {
 
     return (
         <Box>
-            <MarketPlaceSearchBar type={"problem"}/>
+            <Stack direction="row" alignItems="center">
+                <MarketPlaceSearchBar type={"problem"}/>
+                <CreateProblemButton/>
+            </Stack>
             <InfiniteScroll
                 pageStart={0}
                 loadMore={fetchCompanies}
