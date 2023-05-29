@@ -1,12 +1,9 @@
 import {TranslateService, OpenAPI} from "../client";
+import { setHeaders, setBaseURL } from "./utils";
 
 const translateApi = {
     getTranslatedMessage: (text: string, targetLang: string) => {
-        OpenAPI.HEADERS = {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
-            'Content-Type': 'text/plain'
-        }
-        OpenAPI.BASE = "http://172.104.229.42:8000"
+        setHeaders(); setBaseURL()
         return TranslateService.getMessageTranslatedApiV1TranslateGet(text, targetLang)
     }
 }

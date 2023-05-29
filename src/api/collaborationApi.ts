@@ -1,31 +1,17 @@
-import {CollaborationRequestCreate, CollaborationService, OpenAPI} from "../client";
+import { CollaborationService } from "../client";
+import { setHeaders, setBaseURL, setCredentials } from "./utils";
 
 const collaborationApi = {
     getCollaborationById: (collaborationId: number) => {
-        OpenAPI.HEADERS = {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
-            'Content-Type': 'text/plain'
-        }
-        OpenAPI.BASE = "http://172.104.229.42:8000"
-        OpenAPI.CREDENTIALS = "include"
+        setHeaders(); setBaseURL(); setCredentials()
         return CollaborationService.readCollaborationByIdApiV1CollaborationCollaborationIdGet(collaborationId)
     },
     getMyCollaborations: (skip?: number, limit: number = 100) => {
-        OpenAPI.HEADERS = {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
-            'Content-Type': 'text/plain'
-        }
-        OpenAPI.BASE = "http://172.104.229.42:8000"
-        OpenAPI.CREDENTIALS = "include"
+        setHeaders(); setBaseURL(); setCredentials()
         return CollaborationService.readMyCollaborationsApiV1CollaborationGet(skip, limit)
     },
     createCollaborationBid: (collaborationId: number, bid: string) => {
-        OpenAPI.HEADERS = {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
-            'Content-Type': 'application/json'
-        }
-        OpenAPI.BASE = "http://172.104.229.42.8000"
-        OpenAPI.CREDENTIALS = "include"
+        setHeaders(); setBaseURL(); setCredentials()
         return CollaborationService.createCollaborationRequestApiV1CollaborationRequestPost(
             {
                 collaboration_id: collaborationId,

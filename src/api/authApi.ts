@@ -1,20 +1,17 @@
-import {AuthService, Body_login_api_v1_auth_login_post, OpenAPI, ProfileService, UserCreate} from "../client";
+import {AuthService, Body_login_api_v1_auth_login_post, ProfileService, UserCreate} from "../client";
+import { setBaseURL, setHeaders, setCredentials } from "./utils";
 
 const authApi = {
     signup: (requestBody: UserCreate) => {
-        OpenAPI.BASE = "http://172.104.229.42:8000"
+        setBaseURL()
         return AuthService.createUserSignupApiV1AuthSignupPost(requestBody)
     },
     login: (formData: Body_login_api_v1_auth_login_post) => {
-        OpenAPI.BASE = "http://172.104.229.42:8000"
+        setBaseURL()
         return AuthService.loginApiV1AuthLoginPost(formData)
     },
     verifyToken: () => {
-        OpenAPI.HEADERS = {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || ''
-        }
-        OpenAPI.BASE = "http://172.104.229.42:8000"
-        OpenAPI.CREDENTIALS = "include"
+        setBaseURL(); setHeaders(); setCredentials()
         return ProfileService.readUsersMeApiV1ProfileMeGet()
     },
     logout: () => {

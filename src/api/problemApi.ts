@@ -1,38 +1,24 @@
-import {CollaborationService, OpenAPI, ProblemService} from "../client";
+import { ProblemService } from "../client";
+import { setHeaders, setBaseURL, setCredentials } from "./utils";
+
+
 
 const problemApi = {
-    getProblemById: (problemId: number) => {
-        OpenAPI.HEADERS = {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
-            'Content-Type': 'text/plain'
-        }
-        OpenAPI.BASE = "http://172.104.229.42:8000"
-        OpenAPI.CREDENTIALS = "include"
-        return ProblemService.readProblemByIdApiV1ProblemProblemIdGet(problemId)
-    },
-    getMyProblems: (skip?: number, limit: number = 100) => {
-        OpenAPI.HEADERS = {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
-            'Content-Type': 'text/plain'
-        }
-        OpenAPI.BASE = "http://172.104.229.42:8000"
-        OpenAPI.CREDENTIALS = "include"
-        return ProblemService.readMyProblemsApiV1ProblemGet(skip, limit)
-    },
-    createProblemBid: (problemId: number, bid: string) => {
-        OpenAPI.HEADERS = {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
-            'Content-Type': 'application/json'
-        }
-        OpenAPI.BASE = "http://172.104.229.42:8000"
-        OpenAPI.CREDENTIALS = "include"
-        return ProblemService.createProblemBidApiV1ProblemBidPost(
-            {
-                problem_id: problemId,
-                description: bid
-            }
-        )
-    }
-}
+  getProblemById: (problemId: number) => {
+    setHeaders(); setBaseURL(); setCredentials()
+    return ProblemService.readProblemByIdApiV1ProblemProblemIdGet(problemId);
+  },
+  getMyProblems: (skip?: number, limit: number = 100) => {
+    setHeaders(); setBaseURL(); setCredentials()
+    return ProblemService.readMyProblemsApiV1ProblemGet(skip, limit);
+  },
+  createProblemBid: (problemId: number, bid: string) => {
+    setHeaders(); setBaseURL(); setCredentials()
+    return ProblemService.createProblemBidApiV1ProblemBidPost({
+      problem_id: problemId,
+      description: bid
+    });
+  }
+};
 
-export default problemApi
+export default problemApi;
