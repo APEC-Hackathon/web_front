@@ -7,6 +7,7 @@ import Signup from "./pages/userAuth/Signup";
 import ProblemDetailsPage from "./pages/marketplace/ProblemDetailsPage";
 import CollaborationDetailsPage from "./pages/marketplace/CollaborationDetailsPage";
 import HomePage from "./pages/home/HomePage";
+import ChatPage from "./pages/chat/ChatPage";
 import React, { useEffect, useState } from "react";
 import CompanyProfilePage from "./pages/directory/CompanyProfilePage";
 
@@ -33,6 +34,10 @@ function App() {
                     <Route path="signup" element={<Signup />} />
                 </Route>
                 <Route path="/" element={<MainLayout />}>
+                    <Route 
+                        path='chat/:id' 
+                        element={<ChatPage />} 
+                    />
                     <Route
                         path="marketplace/problem/:id"
                         element={<ProblemDetailsPage />}
