@@ -1,8 +1,10 @@
+import React from "react";
 import { Row, Col } from "antd";
 import { withTranslation } from "react-i18next";
 import { Slide } from "react-awesome-reveal";
 import { Button } from "../../common/Button";
 import { MiddleBlockSection, Content, ContentWrapper } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 interface MiddleBlockProps {
     title: string;
@@ -12,12 +14,8 @@ interface MiddleBlockProps {
 }
 
 const MiddleBlock = ({ title, content, button, t }: MiddleBlockProps) => {
-    const scrollTo = (id: string) => {
-        const element = document.getElementById(id) as HTMLDivElement;
-        element.scrollIntoView({
-            behavior: "smooth",
-        });
-    };
+    const navigate = useNavigate();
+
     return (
         <MiddleBlockSection>
             <Slide direction="up">
@@ -29,7 +27,7 @@ const MiddleBlock = ({ title, content, button, t }: MiddleBlockProps) => {
                             {button && (
                                 <Button
                                     name="submit"
-                                    onClick={() => scrollTo("mission")}
+                                    onClick={() => navigate("/login")}
                                 >
                                     {t(button)}
                                 </Button>
