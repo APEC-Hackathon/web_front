@@ -1,4 +1,4 @@
-import {CollaborationService, OpenAPI} from "../client";
+import {CollaborationRequestCreate, CollaborationService, OpenAPI} from "../client";
 
 const collaborationApi = {
     getCollaborationById: (collaborationId: number) => {
@@ -18,6 +18,20 @@ const collaborationApi = {
         OpenAPI.BASE = "http://172.104.229.42:8000"
         OpenAPI.CREDENTIALS = "include"
         return CollaborationService.readMyCollaborationsApiV1CollaborationGet(skip, limit)
+    },
+    createCollaborationBid: (collaborationId: number, bid: string) => {
+        OpenAPI.HEADERS = {
+            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
+            'Content-Type': 'application/json'
+        }
+        OpenAPI.BASE = "http://172.104.229.42.8000"
+        OpenAPI.CREDENTIALS = "include"
+        return CollaborationService.createCollaborationRequestApiV1CollaborationRequestPost(
+            {
+                collaboration_id: collaborationId,
+                description: bid
+            }
+        )
     }
 }
 

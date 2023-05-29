@@ -4,6 +4,7 @@
 import type { Problem } from '../models/Problem';
 import type { ProblemBid } from '../models/ProblemBid';
 import type { ProblemBidCreate } from '../models/ProblemBidCreate';
+import type { ProblemBidUpdate } from '../models/ProblemBidUpdate';
 import type { ProblemCreate } from '../models/ProblemCreate';
 import type { ProblemUpdate } from '../models/ProblemUpdate';
 
@@ -82,6 +83,32 @@ export class ProblemService {
     }
 
     /**
+     * Update My Problem
+     * Update a Problem (Can be used to choose the winner).
+     * @param problemId
+     * @param requestBody
+     * @returns Problem Successful Response
+     * @throws ApiError
+     */
+    public static updateMyProblemApiV1ProblemProblemIdPut(
+        problemId: number,
+        requestBody: ProblemUpdate,
+    ): CancelablePromise<Problem> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/problem/{problem_id}',
+            path: {
+                'problem_id': problemId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
      * Delete Problem
      * Delete a problem.
      * @param problemId
@@ -97,32 +124,6 @@ export class ProblemService {
             path: {
                 'problem_id': problemId,
             },
-            errors: {
-                422: `Validation Error`,
-            },
-        });
-    }
-
-    /**
-     * Update My Problem
-     * Update a Problem.
-     * @param problemId
-     * @param requestBody
-     * @returns Problem Successful Response
-     * @throws ApiError
-     */
-    public static updateMyProblemApiV1ProblemProblemIdPut(
-        problemId: number,
-        requestBody: ProblemUpdate,
-    ): CancelablePromise<Problem> {
-        return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/api/v1/problem/{Problem_id}',
-            query: {
-                'problem_id': problemId,
-            },
-            body: requestBody,
-            mediaType: 'application/json',
             errors: {
                 422: `Validation Error`,
             },
@@ -155,18 +156,134 @@ export class ProblemService {
     }
 
     /**
-     * Read Problem Bids
-     * Retrieve ProblemBids.
+     * Create Problem Bid
+     * Create new ProblemBid.
+     * @param requestBody
+     * @returns ProblemBid Successful Response
+     * @throws ApiError
+     */
+    public static createProblemBidApiV1ProblemBidPost(
+        requestBody: ProblemBidCreate,
+    ): CancelablePromise<ProblemBid> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/problem/bid',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Read Problem Bid By Id
+     * Get a ProblemBid by ID.
+     * @param problemBidId
+     * @returns ProblemBid Successful Response
+     * @throws ApiError
+     */
+    public static readProblemBidByIdApiV1ProblemBidProblemBidIdGet(
+        problemBidId: number,
+    ): CancelablePromise<ProblemBid> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/problem/bid/{problem_bid_id}',
+            path: {
+                'problem_bid_id': problemBidId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Update My Problem Bid
+     * Update a ProblemBid.
+     * @param problemBidId
+     * @param requestBody
+     * @returns ProblemBid Successful Response
+     * @throws ApiError
+     */
+    public static updateMyProblemBidApiV1ProblemBidProblemBidIdPut(
+        problemBidId: number,
+        requestBody: ProblemBidUpdate,
+    ): CancelablePromise<ProblemBid> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/problem/bid/{problem_bid_id}',
+            path: {
+                'problem_bid_id': problemBidId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Delete Problem Bid
+     * Delete a problem_bid.
+     * @param problemBidId
+     * @returns ProblemBid Successful Response
+     * @throws ApiError
+     */
+    public static deleteProblemBidApiV1ProblemBidProblemBidIdDelete(
+        problemBidId: number,
+    ): CancelablePromise<ProblemBid> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/problem/bid/{problem_bid_id}',
+            path: {
+                'problem_bid_id': problemBidId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Read My Problem Bids
+     * Retrieve my ProblemBids.
+     * @param skip
+     * @param limit
+     * @returns ProblemBid Successful Response
+     * @throws ApiError
+     */
+    public static readMyProblemBidsApiV1ProblemMyBidsGet(
+        skip?: number,
+        limit: number = 100,
+    ): CancelablePromise<Array<ProblemBid>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/problem/my-bids/',
+            query: {
+                'skip': skip,
+                'limit': limit,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Read All Bids For A Problem
+     * Retrieve ProblemBids for a Problem.
      * @param problemId
      * @returns ProblemBid Successful Response
      * @throws ApiError
      */
-    public static readProblemBidsApiV1ProblemProblemIdBidGet(
+    public static readAllBidsForAProblemApiV1ProblemBidsProblemIdGet(
         problemId: number,
     ): CancelablePromise<Array<ProblemBid>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/v1/problem/{problem_id}/bid/',
+            url: '/api/v1/problem/bids/{problem_id}',
             path: {
                 'problem_id': problemId,
             },
@@ -177,25 +294,26 @@ export class ProblemService {
     }
 
     /**
-     * Create Problem Bid
-     * Create new ProblemBid.
+     * Choose Winner For Problem
+     * Choose winner for a Problem.
      * @param problemId
-     * @param requestBody
-     * @returns ProblemBid Successful Response
+     * @param problemBidWinnerId
+     * @returns Problem Successful Response
      * @throws ApiError
      */
-    public static createProblemBidApiV1ProblemProblemIdBidPost(
+    public static chooseWinnerForProblemApiV1ProblemProblemIdAnnouncePost(
         problemId: number,
-        requestBody: ProblemBidCreate,
-    ): CancelablePromise<ProblemBid> {
+        problemBidWinnerId: number,
+    ): CancelablePromise<Problem> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/v1/problem/{problem_id}/bid/',
+            url: '/api/v1/problem/{problem_id}/announce',
             path: {
                 'problem_id': problemId,
             },
-            body: requestBody,
-            mediaType: 'application/json',
+            query: {
+                'problem_bid_winner_id': problemBidWinnerId,
+            },
             errors: {
                 422: `Validation Error`,
             },

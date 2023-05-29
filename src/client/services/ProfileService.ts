@@ -66,4 +66,17 @@ export class ProfileService {
         });
     }
 
+    /**
+     * Get All User
+     * Get all users that are not superusers.
+     * @returns User Successful Response
+     * @throws ApiError
+     */
+    public static getAllUserApiV1ProfileAllGet(): CancelablePromise<Array<User>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/profile/all/',
+        });
+    }
+
 }

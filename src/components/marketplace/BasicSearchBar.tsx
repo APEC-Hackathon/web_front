@@ -19,7 +19,6 @@ const BasicSearchBar: React.FC<BasicSearchBarProps> = ({ type }) => {
     useEffect(() => {
         const fetchFilteredData = async () => {
             try {
-                console.log(localStorage.getItem("token"));
                 const data = await fetchData();
                 setMyData(data);
             } catch (error) {

@@ -2,9 +2,10 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Collaboration } from '../models/Collaboration';
-import type { CollaborationBid } from '../models/CollaborationBid';
-import type { CollaborationBidCreate } from '../models/CollaborationBidCreate';
 import type { CollaborationCreate } from '../models/CollaborationCreate';
+import type { CollaborationRequest } from '../models/CollaborationRequest';
+import type { CollaborationRequestCreate } from '../models/CollaborationRequestCreate';
+import type { CollaborationRequestUpdate } from '../models/CollaborationRequestUpdate';
 import type { CollaborationUpdate } from '../models/CollaborationUpdate';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -155,18 +156,134 @@ export class CollaborationService {
     }
 
     /**
-     * Read Collaboration Bids
-     * Get collaboration bids.
-     * @param collaborationId
-     * @returns CollaborationBid Successful Response
+     * Create Collaboration Request
+     * Create new CollaborationRequest.
+     * @param requestBody
+     * @returns CollaborationRequest Successful Response
      * @throws ApiError
      */
-    public static readCollaborationBidsApiV1CollaborationCollaborationIdBidGet(
-        collaborationId: number,
-    ): CancelablePromise<Array<CollaborationBid>> {
+    public static createCollaborationRequestApiV1CollaborationRequestPost(
+        requestBody: CollaborationRequestCreate,
+    ): CancelablePromise<CollaborationRequest> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/collaboration/request',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Read Collaboration Request By Id
+     * Get a CollaborationRequest by ID.
+     * @param collaborationRequestId
+     * @returns CollaborationRequest Successful Response
+     * @throws ApiError
+     */
+    public static readCollaborationRequestByIdApiV1CollaborationRequestCollaborationRequestIdGet(
+        collaborationRequestId: number,
+    ): CancelablePromise<CollaborationRequest> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/v1/collaboration/{collaboration_id}/bid/',
+            url: '/api/v1/collaboration/request/{collaboration_request_id}',
+            path: {
+                'collaboration_request_id': collaborationRequestId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Update My Collaboration Request
+     * Update a CollaborationRequest.
+     * @param collaborationRequestId
+     * @param requestBody
+     * @returns CollaborationRequest Successful Response
+     * @throws ApiError
+     */
+    public static updateMyCollaborationRequestApiV1CollaborationRequestCollaborationRequestIdPut(
+        collaborationRequestId: number,
+        requestBody: CollaborationRequestUpdate,
+    ): CancelablePromise<CollaborationRequest> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/collaboration/request/{collaboration_request_id}',
+            path: {
+                'collaboration_request_id': collaborationRequestId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Delete Collaboration Request
+     * Delete a CollaborationRequest.
+     * @param collaborationRequestId
+     * @returns CollaborationRequest Successful Response
+     * @throws ApiError
+     */
+    public static deleteCollaborationRequestApiV1CollaborationRequestCollaborationRequestIdDelete(
+        collaborationRequestId: number,
+    ): CancelablePromise<CollaborationRequest> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/collaboration/request/{collaboration_request_id}',
+            path: {
+                'collaboration_request_id': collaborationRequestId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Read My Collaboration Requests
+     * Retrieve my CollaborationRequests.
+     * @param skip
+     * @param limit
+     * @returns CollaborationRequest Successful Response
+     * @throws ApiError
+     */
+    public static readMyCollaborationRequestsApiV1CollaborationMyRequestsGet(
+        skip?: number,
+        limit: number = 100,
+    ): CancelablePromise<Array<CollaborationRequest>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/collaboration/my-requests/',
+            query: {
+                'skip': skip,
+                'limit': limit,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Read Collaboration Requests
+     * Retrieve CollaborationRequests for a Collaboration.
+     * @param collaborationId
+     * @returns CollaborationRequest Successful Response
+     * @throws ApiError
+     */
+    public static readCollaborationRequestsApiV1CollaborationRequestsCollaborationIdGet(
+        collaborationId: number,
+    ): CancelablePromise<Array<CollaborationRequest>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/collaboration/requests/{collaboration_id}',
             path: {
                 'collaboration_id': collaborationId,
             },
@@ -177,25 +294,43 @@ export class CollaborationService {
     }
 
     /**
-     * Create Collaboration Bid
-     * Create new collaboration bid.
-     * @param collaborationId
-     * @param requestBody
-     * @returns CollaborationBid Successful Response
+     * Accept Collaboration Request
+     * Accept a CollaborationRequest.
+     * @param collaborationRequestId
+     * @returns CollaborationRequest Successful Response
      * @throws ApiError
      */
-    public static createCollaborationBidApiV1CollaborationCollaborationIdBidPost(
-        collaborationId: number,
-        requestBody: CollaborationBidCreate,
-    ): CancelablePromise<CollaborationBid> {
+    public static acceptCollaborationRequestApiV1CollaborationRequestCollaborationRequestIdAcceptPut(
+        collaborationRequestId: number,
+    ): CancelablePromise<CollaborationRequest> {
         return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/v1/collaboration/{collaboration_id}/bid/',
+            method: 'PUT',
+            url: '/api/v1/collaboration/request/{collaboration_request_id}/accept',
             path: {
-                'collaboration_id': collaborationId,
+                'collaboration_request_id': collaborationRequestId,
             },
-            body: requestBody,
-            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Reject Collaboration Request
+     * Reject a CollaborationRequest.
+     * @param collaborationRequestId
+     * @returns CollaborationRequest Successful Response
+     * @throws ApiError
+     */
+    public static rejectCollaborationRequestApiV1CollaborationRequestCollaborationRequestIdRejectPut(
+        collaborationRequestId: number,
+    ): CancelablePromise<CollaborationRequest> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/collaboration/request/{collaboration_request_id}/reject',
+            path: {
+                'collaboration_request_id': collaborationRequestId,
+            },
             errors: {
                 422: `Validation Error`,
             },

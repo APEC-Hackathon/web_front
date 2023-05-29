@@ -34,7 +34,7 @@ const ProblemDetailsPage: React.FC = () => {
         <div>
             <BasicSearchBar type={"problem"}/>
             <PostMediaPlayer/>
-            <PostTextDataDisplay postData={problem}/>
+            <PostTextDataDisplay postData={problem} type={"problem"}/>
             <MeetTheCompany companyId={problem.owner_id}/>
         </div>
     );

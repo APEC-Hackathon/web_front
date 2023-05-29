@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import collaborationApi from '../../api/collaborationApi';
 import {Collaboration} from "../../client";
-import BasicSearchBar from "../../components/marketplace/BasicSearchBar";
 import PostTextDataDisplay from "../../components/marketplace/PostTextDataDisplay";
 import PostMediaPlayer from "../../components/marketplace/PostMediaPlayer";
 import CollaborationSource from "../../components/marketplace/CollaborationSource";
 import MeetTheCompany from "../../components/marketplace/MeetTheCompany";
 
 
-const CollaborationDetailsPage: React.FC = () => {
+const CompanyDetailsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [collaboration, setCollaboration] = useState<Collaboration | null>(null);
 
@@ -34,7 +33,9 @@ const CollaborationDetailsPage: React.FC = () => {
 
     return (
         <div>
-            <BasicSearchBar type={"collaboration"}/>
+            {/*<CompanyMediaPlayer/>*/}
+            {/*<CompanyTextDataDisplay/>*/}
+            {/*<CompanyCollaboration/>*/}
             <PostMediaPlayer/>
             <PostTextDataDisplay postData={collaboration} type={"collaboration"}/>
             <CollaborationSource sourceId={collaboration.source_id}/>
@@ -43,4 +44,4 @@ const CollaborationDetailsPage: React.FC = () => {
     );
 };
 
-export default CollaborationDetailsPage;
+export default CompanyDetailsPage;

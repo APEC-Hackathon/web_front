@@ -2,10 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CollaborationBid = {
+export type CollaborationRequestCreate = {
     description?: string;
-    id?: number;
     collaboration_id?: number;
-    bidder_id?: number;
 };
 
