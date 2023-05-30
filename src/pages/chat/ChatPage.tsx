@@ -139,7 +139,7 @@ const ChatPage: React.FC = () => {
     }
 
     if (socketRef.current) {
-      socketRef.current.send(JSON.stringify({ message: input }));
+      socketRef.current.send(JSON.stringify({ content: input }));
     }
   };
 
