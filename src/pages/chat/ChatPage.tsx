@@ -17,6 +17,9 @@ const ChatPage: React.FC = () => {
 
   const [myId, setMyId] = useState<number | undefined>(undefined);
   useEffect(() => {
+
+    document.documentElement.classList.add('disable-overflow-y');
+
     const fetchMe = async () => {
       try {
         const me = await userApi.getMe();
@@ -26,6 +29,10 @@ const ChatPage: React.FC = () => {
       }
     };
     fetchMe();
+
+    return () => {
+      document.documentElement.classList.remove('disable-overflow-y');
+    }
   }, []);
 
   
