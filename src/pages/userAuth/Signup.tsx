@@ -25,7 +25,6 @@ const Signup = () => {
         const confirmPassword = data.get('confirmPassword')?.toString().trim() || '';
         const fullName = data.get('fullName')?.toString().trim() || '';
         const orgName = data.get('orgName')?.toString().trim() || '';
-        const avatarUrl = data.get('avatarUrl')?.toString().trim() || '';
         const orgDesc = data.get('orgDesc')?.toString().trim() || '';
         const country = data.get('country')?.toString().trim() || '';
         const prefLang = data.get('prefLang')?.toString().trim() || '';
@@ -59,14 +58,13 @@ const Signup = () => {
                 password: password,
                 full_name: fullName,
                 organization_name: orgName,
-                avatar_url: avatarUrl,
                 organization_description: orgDesc,
                 country: country,
                 prefered_language: prefLang,
             });
             setLoading(false);
             localStorage.setItem('user', res.id?.toString() || '');
-            navigate('/');
+            navigate('/login');
         } catch (err: any) {
             setLoading(false);
             setSignupError(err.response?.data?.detail || 'Signup failed. Please try again.');
@@ -74,182 +72,169 @@ const Signup = () => {
     };
 
     return (
-        <Stack sx={{width: '100%'}}>
-            <Box
-                component='form'
-                onSubmit={handleSubmit}
-                noValidate
-                sx={{width: '100%'}}
-            >
-                <Stack direction="row" spacing={2}>
-                    <TextField
-                        margin='normal'
-                        required
-                        fullWidth
-                        id='email'
-                        label='Email'
-                        name='email'
-                        disabled={loading}
-                        error={emailErrText !== ''}
-                        helperText={emailErrText}
-                    />
-                    <TextField
-                        margin='normal'
-                        required
-                        fullWidth
-                        id='fullName'
-                        label='Full Name'
-                        name='fullName'
-                        disabled={loading}
-                    />
-                </Stack>
-                <Stack direction="row" spacing={2}>
-                    <TextField
-                        margin='normal'
-                        required
-                        fullWidth
-                        id='password'
-                        label='Password'
-                        name='password'
-                        type='password'
-                        disabled={loading}
-                        error={passwordErrText !== ''}
-                        helperText={passwordErrText}
-                    />
-                    <TextField
-                        margin='normal'
-                        required
-                        fullWidth
-                        id='confirmPassword'
-                        label='Confirm Password'
-                        name='confirmPassword'
-                        type='password'
-                        disabled={loading}
-                        error={confirmPasswordErrText !== ''}
-                        helperText={confirmPasswordErrText}
-                    />
-                </Stack>
-                <Stack direction="row" spacing={2}>
-                    <Stack>
-                        <TextField
-                            margin='normal'
-                            required
-                            fullWidth
-                            id='orgName'
-                            label='Organization Name'
-                            name='orgName'
-                            disabled={loading}
-                        />
-                        <TextField
-                            margin='normal'
-                            defaultValue='https://'
-                            required
-                            fullWidth
-                            id='avatarUrl'
-                            label='Avatar Url'
-                            name='avatarUrl'
-                            disabled={loading}
-                        />
-                    </Stack>
-                    <Stack>
-                        <TextField
-                            margin='normal'
-                            required
-                            fullWidth
-                            multiline
-                            rows={4}
-                            id='orgDesc'
-                            label='Organization Description'
-                            name='orgDesc'
-                            disabled={loading}
-                        />
-                    </Stack>
-                </Stack>
-                <Stack direction="row" spacing={2} alignItems="center">
-                    <Autocomplete
-                        id="country-select"
-                        sx={{width: 300}}
-                        options={countries}
-                        autoHighlight
-                        getOptionLabel={(option) => option.label}
-                        renderOption={(props, option) => (
-                            <Box component="li" sx={{'& > img': {mr: 2, flexShrink: 0}}} {...props}>
-                                <img
-                                    loading="lazy"
-                                    width="20"
-                                    src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                    srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                                    alt=""
-                                />
-                                {option.label} ({option.code})
-                            </Box>
-                        )}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                id='country'
-                                label='Country'
-                                name='country'
-                                inputProps={{
-                                    ...params.inputProps,
-                                    autoComplete: 'new-password', // disable autocomplete and autofill
-                                }}
-                            />
-                        )}
-                    />
-                    <Autocomplete
-                        id="leng-select"
-                        sx={{width: 300}}
-                        options={languages}
-                        autoHighlight
-                        getOptionLabel={(option) => option.code}
-                        renderOption={(props, option) => (
-                            <Box component="li" sx={{'& > img': {mr: 2, flexShrink: 0}}} {...props}>
-                                {option.label}
-                            </Box>
-                        )}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                id='prefLang'
-                                label='Prefered Language'
-                                name='prefLang'
-                                defaultValue={"en"}
-                                inputProps={{
-                                    ...params.inputProps,
-                                    autoComplete: 'new-password', // disable autocomplete and autofill
-                                }}
-                            />
-                        )}
-                    />
-                </Stack>
-                {signupError && (
-                    <Alert severity='error' sx={{mt: 2}}>
-                        {signupError}
-                    </Alert>
-                )}
-                <LoadingButton
-                    sx={{mt: 3, mb: 2}}
-                    variant='outlined'
-                    fullWidth
-                    color='success'
-                    type='submit'
-                    loading={loading}
-                >
-                    Signup
-                </LoadingButton>
-            </Box>
-            <Button
-                component={Link}
-                to='/login'
-                sx={{textTransform: 'none'}}
-            >
-                Already have an account? Login
-            </Button>
-            <Button component={Link} to="/" sx={{textTransform: 'none'}}>
-                Back to Home page
-            </Button>
-        </Stack>
+<Stack sx={{ width: "100%" }}>
+  <Box
+    component="form"
+    onSubmit={handleSubmit}
+    noValidate
+    sx={{ width: "100%" }}
+  >
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        id="email"
+        label="Email"
+        name="email"
+        disabled={loading}
+        error={emailErrText !== ""}
+        helperText={emailErrText}
+        sx={{ width: "100%" }}
+      />
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        id="fullName"
+        label="Full Name"
+        name="fullName"
+        disabled={loading}
+        sx={{ width: "100%" }}
+      />
+
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        id="password"
+        label="Password"
+        name="password"
+        type="password"
+        disabled={loading}
+        error={passwordErrText !== ""}
+        helperText={passwordErrText}
+        sx={{ width: "100%" }}
+      />
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        id="confirmPassword"
+        label="Confirm Password"
+        name="confirmPassword"
+        type="password"
+        disabled={loading}
+        error={confirmPasswordErrText !== ""}
+        helperText={confirmPasswordErrText}
+        sx={{ width: "100%" }}
+      />
+
+
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="orgName"
+          label="Organization Name"
+          name="orgName"
+          disabled={loading}
+        />
+
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          multiline
+          rows={4}
+          id="orgDesc"
+          label="Organization Description"
+          name="orgDesc"
+          disabled={loading}
+        />
+        <Stack direction="row" spacing={2}>
+      <Autocomplete
+        id="country-select"
+        sx={{ width: 300 }}
+        options={countries}
+        autoHighlight
+        getOptionLabel={(option) => option.label}
+        renderOption={(props, option) => (
+          <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 } }} {...props}>
+            <img
+              loading="lazy"
+              width="20"
+              src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+              srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+              alt=""
+            />
+            {option.label} ({option.code})
+          </Box>
+        )}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            id="country"
+            label="Country"
+            name="country"
+            inputProps={{
+              ...params.inputProps,
+              autoComplete: "new-password", // disable autocomplete and autofill
+            }}
+          />
+        )}
+      />
+      <Autocomplete
+        id="leng-select"
+        sx={{ width: 300 }}
+        options={languages}
+        autoHighlight
+        getOptionLabel={(option) => option.code}
+        renderOption={(props, option) => (
+          <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 } }} {...props}>
+            {option.label}
+          </Box>
+        )}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            id="prefLang"
+            label="Preferred Language"
+            name="prefLang"
+            defaultValue={"en"}
+            inputProps={{
+              ...params.inputProps,
+              autoComplete: "new-password", // disable autocomplete and autofill
+            }}
+          />
+          
+        )}
+      />
+      </Stack>
+
+    {signupError && (
+      <Alert severity="error" sx={{ mt: 2 }}>
+        {signupError}
+      </Alert>
+    )}
+    <LoadingButton
+      sx={{ mt: 3, mb: 2 }}
+      variant="outlined"
+      fullWidth
+      color="success"
+      type="submit"
+      loading={loading}
+    >
+      Signup
+    </LoadingButton>
+  </Box>
+  <Button component={Link} to="/login" sx={{ textTransform: "none" }}>
+    Already have an account? Login
+  </Button>
+  <Button component={Link} to="/" sx={{ textTransform: "none" }}>
+    Back to Home page
+  </Button>
+</Stack>
+
     )
 }
 
