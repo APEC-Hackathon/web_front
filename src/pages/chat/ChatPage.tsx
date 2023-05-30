@@ -140,7 +140,7 @@ const ChatPage: React.FC = () => {
     setInput('');
 
     try {
-      messageApi.sendMesage(parseInt(id!), input); 
+      messageApi.sendMesage(parseInt(id!), input);
     } catch (error) {
       console.error('Error sending message:', error);
     }

@@ -10,11 +10,11 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import {User} from "../../client";
 import {useEffect, useState} from "react";
 import userApi from "../../api/userApi";
 import {useNavigate} from "react-router-dom";
+import ChatStartButton from "../chat/ChatStartButton";
 
 interface CompanyCardProps {
     companyId: number | null
@@ -40,10 +40,6 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
 
     const navigate = useNavigate();
 
-    const handleConnectClick = () => {
-
-    }
-
     const handleProfileClick = () => {
         navigate(`/profile/${companyId}`)
     }
@@ -61,7 +57,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
                 <CardMedia
                     component="img"
                     height="194"
-                    image={company?.avatar_url ? company.avatar_url : "https://mui.com/static/images/cards/paella.jpg"}
+                    image={company?.avatar_url ? "https://picsum.photos/1920/1080?img=1" : 'https://picsum.photos/1920/1080?img=1'}
                     alt={company?.organization_name}
                 />
             </Button>
@@ -80,9 +76,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
                 <IconButton aria-label="share">
                     <ShareIcon/>
                 </IconButton>
-                <IconButton aria-label="connect" onClick={handleConnectClick}>
-                    <ConnectWithoutContactIcon/>
-                </IconButton>
+                <ChatStartButton userId={companyId!}/>
             </CardActions>
         </Card>
 

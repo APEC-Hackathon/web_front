@@ -34,8 +34,6 @@ const CompanyProfilePage: React.FC = () => {
         <div>
             <CompanyMediaPlayer userMedia={user.avatar_url!}/>
             <CompanyTextDataDisplay userData={user}/>
-            <CompanyProblems userId={user.id!}/>
-            <CompanyCollaborations userId={user.id!}/>
         </div>
     );
 };
