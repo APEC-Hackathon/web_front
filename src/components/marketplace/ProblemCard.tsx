@@ -54,7 +54,7 @@ const ProblemCard = ({ problem }: ProblemCardProps) => {
           alt={problem.title}
         />
       </Button>
-      <CardContent>
+      <CardContent  sx={{ height: 120, overflow: 'hidden' }}>
         <Typography variant="body2" color="text.secondary">
           {problem.description ? problem.description : ""}
         </Typography>
