@@ -12,6 +12,7 @@ const ChatPage: React.FC = () => {
   const socketRef = useRef<WebSocket | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showTranslatedContent, setShowTranslatedContent] = useState(false);
+  const [friendEmail, setFriendEmail] = useState<string>('');
 
   const wsUrl = 'ws://172.104.229.42:8000/ws';
 
@@ -29,6 +30,16 @@ const ChatPage: React.FC = () => {
       }
     };
     fetchMe();
+
+    const fetchFriendInfo = async () => { // Fetch friend's name
+      try {
+        const friend = await userApi.getUserById(parseInt(id!));
+        setFriendEmail(friend.email!);
+      } catch (error) {
+        console.error('Error fetching friend:', error);
+      }
+    };
+    fetchFriendInfo();
 
     return () => {
       document.documentElement.classList.remove('disable-overflow-y');
@@ -135,7 +146,7 @@ const ChatPage: React.FC = () => {
       sender: 'me',
       timestamp: '',
     };
-
+  
     setMessages((prevMessages) => [...prevMessages, message]);
     setInput('');
 
@@ -152,6 +163,9 @@ const ChatPage: React.FC = () => {
 
   return (
     <div className="app">
+      <div className="app__header"> 
+        <span>{ friendEmail } </span>
+      </div>
       <div className="app__toggle-button">
         <button onClick={() => setShowTranslatedContent(!showTranslatedContent)}>
           {showTranslatedContent ? 'Display Original Message' : 'Display Translated Message'}
