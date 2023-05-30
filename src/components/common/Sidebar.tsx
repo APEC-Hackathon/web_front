@@ -34,9 +34,10 @@ const Sidebar = () => {
                   startIcon={
                   <Avatar
                     variant={"circular"}
-                    src={assets.images.logo}
+                    src={assets.images.logoDark}
+                    sx={{mr: '6px'}}
                   />}
-                  sx={{ color: 'white', fontWeight: 'bold'}}
+                  sx={{ color: 'white', fontWeight: 'bold', pt: '8px'}}
               >
                   CollabMarket
               </Button>
