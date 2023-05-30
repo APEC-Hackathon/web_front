@@ -36,10 +36,17 @@ const Login = () => {
 
     setLoading(true)
 
+    function sleep(delay = 0) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, delay);
+      });
+    }
+
     try {
       const res = await authApi.login({ username, password })
-      setLoading(false)
       localStorage.setItem('token', res.access_token)
+      setLoading(false)
+      await sleep(1e2);
       navigate('/dashboard')
     } catch (err) {
       setLoading(false)

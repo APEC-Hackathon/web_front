@@ -10,6 +10,13 @@ import MetricsPage from "../pages/dashboard/MetricsPage";
 import MarketplaceCollaborationsPage from "../pages/marketplace/MarketplaceCollaborationsPage";
 import StoreIcon from '@mui/icons-material/Store';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
+import ChatPage from "../pages/chat/ChatPage";
+import React from "react";
+import ProblemDetailsPage from "../pages/marketplace/ProblemDetailsPage";
+import CollaborationDetailsPage from "../pages/marketplace/CollaborationDetailsPage";
+import CompanyProfilePage from "../pages/directory/CompanyProfilePage";
+import CreateProblemPage from "../pages/marketplace/CreateProblemPage";
+import CreateCollaborationPage from "../pages/marketplace/CreateCollaborationPage";
 
 const appRoutes: RouteType[] = [
     {
@@ -52,7 +59,7 @@ const appRoutes: RouteType[] = [
         element: <MarketplaceProblemsPage/>,
         state: "marketplace.problems",
         sidebarProps: {
-            displayText: "Problems",
+            displayText: "Marketplace",
             icon: <StoreIcon/>,
         },
     },
@@ -74,6 +81,36 @@ const appRoutes: RouteType[] = [
             icon: <ArticleOutlinedIcon/>,
         },
     },
+    {
+        path: "/chat/:id",
+        element: <ChatPage />,
+        state: "chat"
+    },
+    {
+        path: "/marketplace/problem/:id",
+        element: <ProblemDetailsPage />,
+        state: "marketplace.problem"
+    },
+    {
+        path: "/marketplace/collaboration/:id",
+        element: <CollaborationDetailsPage />,
+        state: "marketplace.collaboration"
+    },
+    {
+        path: "/profile/:id",
+        element: <CompanyProfilePage />,
+        state: "profile"
+    },
+    {
+        path: "/marketplace/problem/create",
+        element: <CreateProblemPage />,
+        state: "marketplace.problem.create"
+    },
+    {
+        path: "/marketplace/collaboration/create",
+        element: <CreateCollaborationPage />,
+        state: "marketplace.collaboration.create"
+    }
 ];
 
 export default appRoutes;

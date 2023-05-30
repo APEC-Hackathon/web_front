@@ -4,8 +4,8 @@ const colorConfigs = {
   sidebar: {
     bg: "#183c64",
     color: "#eeeeee",
-    hoverBg: "#18641A",
-    activeBg: "#644018"
+    hoverBg: "#2A69B0",
+    activeBg: "#2E5683"
   },
   topbar: {
     bg: "#fff",

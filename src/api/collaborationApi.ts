@@ -14,13 +14,11 @@ const collaborationApi = {
         setHeaders(); setBaseURL(); setCredentials()
         return CollaborationService.readAllCollaborationsApiV1CollaborationFeedGet(skip, limit)
     },
-    createCollaboration: (title: string, description: string, source_id: number, image_url: string) => {
+    createCollaboration: (title: string, description: string) => {
         setHeaders(); setBaseURL(); setCredentials()
         return CollaborationService.createCollaborationApiV1CollaborationPost({
             title: title,
-            description: description,
-            source_id: source_id,
-            image_url: image_url
+            description: description
         })
     },
     updateCollaboration: (collaborationId: number, title: string, description: string, source_id: number, image_url: string) => {

@@ -20,6 +20,8 @@ const MainLayout = () => {
                 const user = await authUtils.isAuthenticated()
                 if (user) {
                     dispatch(setUser(user))
+                } else {
+                    navigate('/login')
                 }
             } catch (e) {
                 setLoading(false)

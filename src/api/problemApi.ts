@@ -16,13 +16,12 @@ const problemApi = {
         setHeaders(); setBaseURL(); setCredentials()
         return ProblemService.readAllProblemsApiV1ProblemFeedGet(skip, limit);
     },
-    createProblem: (title: string, description: string, bid_deadline: string, image_url: string) => {
+    createProblem: (title: string, description: string, bid_deadline: string) => {
         setHeaders(); setBaseURL(); setCredentials()
         return ProblemService.createProblemApiV1ProblemPost({
             title: title,
             description: description,
-            bid_deadline: bid_deadline,
-            image_url: image_url
+            bid_deadline: bid_deadline
         });
     },
     updateProblem: (problemId: number, title: string, description: string, bid_deadline: string, image_url: string, bid_winner_id: number) => {

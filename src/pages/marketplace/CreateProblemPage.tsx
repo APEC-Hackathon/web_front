@@ -24,7 +24,6 @@ const CreateProblemPage = () => {
         const data = new FormData(e.currentTarget as HTMLFormElement);
         const title = data.get('title')?.toString().trim() || '';
         const description = data.get('description')?.toString().trim() || '';
-        const image = data.get('image')?.toString().trim() || '';
 
         if (title === '') {
             setTitleMt(true)
@@ -32,14 +31,12 @@ const CreateProblemPage = () => {
         if (description === '') {
             setDescriptionMt(true);
         }
-        if (image === '') {
-            setImageMt(true);
-        }
+
 
         setLoading(true);
 
         try {
-            await problemApi.createProblem(title, description, bidDeadline!.toISOString().toString(), image);
+            await problemApi.createProblem(title, description, bidDeadline!.toISOString().toString());
             setLoading(false);
             navigate('/marketplace/problems');
         } catch (err: any) {
@@ -84,15 +81,6 @@ const CreateProblemPage = () => {
                         </DemoContainer>
                     </LocalizationProvider>
                 </Box>
-                <TextField
-                    name="image"
-                    error={imageMt}
-                    required
-                    id="image-required"
-                    defaultValue="https://"
-                    label="Image URL"
-                    helperText="The image of your problem"
-                />
             </Stack>
           <LoadingButton
               sx={{ mt: 3, mb: 2 }}

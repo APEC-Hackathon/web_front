@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
@@ -30,6 +30,17 @@ const Header = ({ t }: any) => {
     };
 
     const MenuItem = () => {
+        const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+        useEffect(() => {
+            const checkAuthentication = () => {
+                const isAuthenticated1 = localStorage.getItem("token") !== null;
+                setIsAuthenticated(isAuthenticated1);
+            };
+
+            checkAuthentication();
+        }, []);
+
         const scrollTo = (id: string) => {
             const element = document.getElementById(id) as HTMLDivElement;
             element.scrollIntoView({
@@ -37,12 +48,28 @@ const Header = ({ t }: any) => {
             });
             setVisibility(false);
         };
+
+        const handleClickProblems = () => {
+            if (isAuthenticated) {
+                navigate("/marketplace/problems");
+            } else {
+                navigate("/login");
+            }
+        }
+
+        const handleClickCollaborations = () => {
+            if (isAuthenticated) {
+                navigate("/marketplace/collaborations");
+            } else {
+                navigate("/login");
+            }
+        }
         return (
             <>
-                <CustomNavLinkSmall onClick={() => navigate("/marketplace")}>
+                <CustomNavLinkSmall onClick={handleClickProblems}>
                     <Span>{t("Marketplace")}</Span>
                 </CustomNavLinkSmall>
-                <CustomNavLinkSmall onClick={() => navigate("/collaborations")}>
+                <CustomNavLinkSmall onClick={handleClickCollaborations}>
                     <Span>{t("Collaborations")}</Span>
                 </CustomNavLinkSmall>
                 <CustomNavLinkSmall

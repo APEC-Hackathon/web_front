@@ -18,9 +18,7 @@ const CreateCollaborationPage = () => {
         e.preventDefault();
         const data = new FormData(e.currentTarget as HTMLFormElement);
         const title = data.get('title')?.toString().trim() || '';
-        const sourceId = parseInt(data.get('sourceId')!.toString()) || -1;
         const description = data.get('description')?.toString().trim() || '';
-        const image = data.get('image')?.toString().trim() || '';
 
         if (title === '') {
             setTitleMt(true)
@@ -28,17 +26,11 @@ const CreateCollaborationPage = () => {
         if (description === '') {
             setDescriptionMt(true);
         }
-        if (sourceId < 0) {
-            setSourceMt(true);
-        }
-        if (image === '') {
-            setImageMt(true);
-        }
 
         setLoading(true);
 
         try {
-            await collaborationApi.createCollaboration(title, description, sourceId, image);
+            await collaborationApi.createCollaboration(title, description);
             setLoading(false);
             navigate('/marketplace/collaborations');
         } catch (err: any) {
@@ -71,24 +63,6 @@ const CreateCollaborationPage = () => {
                     multiline
                     maxRows={4}
                     helperText="The description of your collaboration"
-                />
-                <TextField
-                    name="sourceId"
-                    error={sourceMt}
-                    required
-                    type="number"
-                    id="desc-required"
-                    label="Source ID"
-                    helperText="The ID of the problem"
-                />
-                <TextField
-                    name="image"
-                    error={imageMt}
-                    required
-                    id="image-required"
-                    defaultValue="https://"
-                    label="Image URL"
-                    helperText="The image of your collaboration"
                 />
             </Stack>
             <LoadingButton
