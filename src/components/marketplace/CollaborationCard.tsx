@@ -17,7 +17,7 @@ import { Collaboration } from "../../client";
 import { useNavigate } from "react-router-dom";
 import collaborationApi from "../../api/collaborationApi";
 
-import "./ProblemCard";
+import "./ProblemCard.css";
 
 interface CollaborationCardProps {
   collaboration: Collaboration;
@@ -35,7 +35,7 @@ const CollaborationCard = ({ collaboration }: CollaborationCardProps) => {
   };
 
   return (
-    <Card className="collaboration-card">
+    <Card className="problem-card">
       <CardHeader
         action={
           <IconButton aria-label="settings">
@@ -63,6 +63,7 @@ const CollaborationCard = ({ collaboration }: CollaborationCardProps) => {
             : ""}
         </Typography>
       </CardContent>
+      <div className="card-icons">
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -74,6 +75,7 @@ const CollaborationCard = ({ collaboration }: CollaborationCardProps) => {
           <ConnectWithoutContactIcon />
         </IconButton>
       </CardActions>
+        </div>
     </Card>
   );
 };

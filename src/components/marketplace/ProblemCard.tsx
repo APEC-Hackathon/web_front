@@ -1,10 +1,7 @@
-// ProblemCard.tsx
-
 import React from "react";
 import {
   Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   CardMedia,
@@ -59,12 +56,10 @@ const ProblemCard = ({ problem }: ProblemCardProps) => {
       </Button>
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {problem.description
-            ? problem.description
-            : ""}
+          {problem.description ? problem.description : ""}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      <div className="card-icons">
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -74,7 +69,7 @@ const ProblemCard = ({ problem }: ProblemCardProps) => {
         <IconButton aria-label="connect" onClick={handleConnectClick}>
           <ConnectWithoutContactIcon />
         </IconButton>
-      </CardActions>
+      </div>
     </Card>
   );
 };
