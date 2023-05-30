@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CollaborationBidCreate = {
+export type ProblemBidUpdate = {
     description?: string;
 };
 

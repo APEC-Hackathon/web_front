@@ -1,3 +1,4 @@
+import React from "react";
 import { Row, Col } from "antd";
 import { withTranslation } from "react-i18next";
 import { SvgIcon } from "../../../common/SvgIcon";
@@ -10,6 +11,7 @@ import {
     ContentWrapper,
     ButtonWrapper,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const RightBlock = ({
     title,
@@ -19,12 +21,19 @@ const RightBlock = ({
     t,
     id,
 }: ContentBlockProps) => {
-    const scrollTo = (id: string) => {
-        const element = document.getElementById(id) as HTMLDivElement;
-        element.scrollIntoView({
-            behavior: "smooth",
-        });
+    const navigate = useNavigate();
+
+    const handleButtonClick = (route: string) => {
+        if (route === "/login") {
+            navigate("/login");
+        } else {
+            const element = document.getElementById(route) as HTMLDivElement;
+            element.scrollIntoView({
+                behavior: "smooth",
+            });
+        }
     };
+
     return (
         <RightBlockContainer>
             <Fade direction="right">
@@ -35,20 +44,18 @@ const RightBlock = ({
                             <Content>{t(content)}</Content>
                             <ButtonWrapper>
                                 {typeof button === "object" &&
-                                    button.map((item: any, id: number) => {
-                                        return (
-                                            <Button
-                                                key={id}
-                                                color={item.color}
-                                                fixedWidth={true}
-                                                onClick={() =>
-                                                    scrollTo("about")
-                                                }
-                                            >
-                                                {t(item.title)}
-                                            </Button>
-                                        );
-                                    })}
+                                    button.map((item: any, id: number) => (
+                                        <Button
+                                            key={id}
+                                            color={item.color}
+                                            fixedWidth={true}
+                                            onClick={() =>
+                                                handleButtonClick(item.route)
+                                            }
+                                        >
+                                            {t(item.title)}
+                                        </Button>
+                                    ))}
                             </ButtonWrapper>
                         </ContentWrapper>
                     </Col>

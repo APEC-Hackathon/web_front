@@ -1,25 +1,39 @@
 import React, { useState } from "react";
-import { Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import {Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions, Box} from "@mui/material";
+import collaborationApi from "../../api/collaborationApi";
+import problemApi from "../../api/problemApi";
 
-const BidButton = () => {
+interface BidButtonProps {
+    type: string;
+    id: number | undefined;
+}
+const BidButton: React.FC<BidButtonProps> = ({type, id}) => {
     const [open, setOpen] = useState(false);
     const [bidAmount, setBidAmount] = useState("");
-    const [item, setItem] = useState("");
-    const [cost, setCost] = useState("");
 
     const handleOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
+        setBidAmount("")
         setOpen(false);
     };
 
-    const handleBidClick = () => {
-        // Handle bid button click and submit bid data
-        console.log("Bid Amount:", bidAmount);
-        console.log("Item:", item);
-        console.log("Cost:", cost);
+    const handleBidClick = async () => {
+        try {
+            if (type === "collaboration") {
+                console.log("Collab created:", bidAmount);
+                await collaborationApi.createCollaborationRequest(id!, bidAmount);
+            }
+            if (type === "problem") {
+                console.log("Problem created with bid:", bidAmount);
+                console.log("Problem created with id:", id!);
+                await problemApi.createProblemBid(id!, bidAmount);
+            }
+        } catch (error) {
+            console.error("Error creating bid:", error);
+        }
         handleClose();
     };
 
@@ -29,28 +43,24 @@ const BidButton = () => {
                 Place Bid
             </Button>
 
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog fullWidth={true} maxWidth={"lg"} open={open} onClose={handleClose}>
                 <DialogTitle>Enter Bid Details</DialogTitle>
                 <DialogContent>
+                    <Box sx={{
+                        marginTop: 2,
+                        marginBottom: 2,
+                    }}>
                     <TextField
-                        label="Bid Amount"
-                        variant="outlined"
-                        type="number"
+                        fullWidth
+                        margin="normal"
+                        id="outlined-textarea"
+                        label="Bid Commitment"
+                        placeholder="What can you commit?"
+                        multiline
                         value={bidAmount}
                         onChange={(e) => setBidAmount(e.target.value)}
                     />
-                    <TextField
-                        label="Item"
-                        variant="outlined"
-                        value={item}
-                        onChange={(e) => setItem(e.target.value)}
-                    />
-                    <TextField
-                        label="Cost"
-                        variant="outlined"
-                        value={cost}
-                        onChange={(e) => setCost(e.target.value)}
-                    />
+                    </Box>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>

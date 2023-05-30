@@ -1,9 +1,18 @@
-import {OpenAPI, ProfileService} from "../client";
+import { ProfileService} from "../client";
+import {setBaseURL, setCredentials, setHeaders} from "./utils";
 
 const authApi = {
     getUserById: (userId: number) => {
-        OpenAPI.BASE = "http://172.104.229.42:8000"
-        return ProfileService. readUserByIdApiV1ProfileUserIdGet(userId)
+        setBaseURL(); setHeaders()
+        return ProfileService.readUserByIdApiV1ProfileUserIdGet(userId)
+    },
+    getAllUsers: () => {
+        setBaseURL(); setHeaders(); setCredentials()
+        return ProfileService.getAllUserApiV1ProfileAllGet()
+    },
+    getMe: () => {
+        setBaseURL(); setHeaders(); setCredentials()
+        return ProfileService.readUsersMeApiV1ProfileMeGet()
     }
 }
 

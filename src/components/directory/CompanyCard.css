@@ -1,0 +1,13 @@
+.company-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card-icons {
+    display: flex;
+    align-items: left;
+    padding: 8px;
+    margin-top: auto;
+  }
+  

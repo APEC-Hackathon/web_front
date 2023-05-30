@@ -80,26 +80,4 @@ export class MessageService {
         });
     }
 
-    /**
-     * Read Latest Received Message
-     * Retrieve messages.
-     * @param peerId
-     * @returns Message Successful Response
-     * @throws ApiError
-     */
-    public static readLatestReceivedMessageApiV1MessagePeerIdReceivedLatestGet(
-        peerId: number,
-    ): CancelablePromise<Message> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/v1/message/{peer_id}/received-latest',
-            path: {
-                'peer_id': peerId,
-            },
-            errors: {
-                422: `Validation Error`,
-            },
-        });
-    }
-
 }

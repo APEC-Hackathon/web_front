@@ -10,5 +10,6 @@ export type Body_update_user_me_api_v1_profile_me_put = {
     organization_description?: string;
     prefered_language?: string;
     country?: string;
+    avatar_url?: string;
 };
 

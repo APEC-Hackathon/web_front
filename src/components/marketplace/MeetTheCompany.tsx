@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Typography } from "@mui/material";
+import {Avatar, Box, Button, Container, Paper, Stack, Typography} from "@mui/material";
 import userApi from "../../api/userApi";
 import {User} from "../../client";
+import {useNavigate} from "react-router-dom";
 
 interface MeetTheCompanyProps {
     companyId: number | undefined
@@ -9,6 +10,11 @@ interface MeetTheCompanyProps {
 
 const MeetTheCompany = ({ companyId }: MeetTheCompanyProps) => {
     const [company, setCompany] = useState<User | null>(null);
+
+    const navigate = useNavigate();
+    const handleClickViewCompany = async () => {
+        navigate('/profile/' + companyId);
+    };
 
     useEffect(() => {
         if (!companyId) {
@@ -32,10 +38,63 @@ const MeetTheCompany = ({ companyId }: MeetTheCompanyProps) => {
 
     return (
         <div>
-            <Typography variant="h4">Company: {company.organization_name}</Typography>
-            {/*<img src={company.image} alt={company.name} />*/}
-            <Typography variant="body1">Description: {company.organization_description}</Typography>
-            <Typography variant="body2">Location: {company.country}</Typography>
+            <Container
+                sx={{ mt: 5, width: "120%" }}
+                disableGutters={true}
+                maxWidth="lg"
+            >
+                <Paper elevation={3} sx={{ p: 3 }}>
+                    <Stack direction="row" justifyContent="space-between">
+                    <Box>
+                    <Stack>
+                        <Box>
+                            <Typography variant="h4" sx={{fontWeight: "bold"}}>
+                                Meet the company!
+                            </Typography>
+                        </Box>
+                    </Stack>
+                    <Stack direction="column" justifyContent="space-between">
+                        <Stack direction="row" sx={{pt: "16px"}} alignItems="top">
+                            <Box sx={{pr: "16px"}}>
+                                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                            </Box>
+                            <Box>
+                                <Box sx={{display: 'flex', flexDirection: "row"}}>
+                                    <Typography variant="h5" sx={{fontWeight: "bold"}}>
+                                        Company:
+                                    </Typography>
+                                    <Typography variant="h5" sx={{pl: "10px"}}>
+                                        {company.organization_name ? company.organization_name : "No company name"}
+                                    </Typography>
+                                </Box>
+                                <Box sx={{display: 'flex', flexDirection: "row"}}>
+                                    <Typography variant="h5" sx={{fontWeight: "bold"}}>
+                                        Description:
+                                    </Typography>
+                                    <Typography variant="h5" sx={{pl: "10px"}}>
+                                        {company.organization_description ? company.organization_description : "No company description"}
+                                    </Typography>
+                                </Box>
+                                <Box sx={{display: 'flex', flexDirection: "row"}}>
+                                    <Typography variant="h5" sx={{fontWeight: "bold"}}>
+                                        Location
+                                    </Typography>
+                                    <Typography variant="h5" sx={{pl: "10px"}}>
+                                        {company.country ? company.country : "No company location"}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                        </Stack>
+                    </Stack>
+                    </Box>
+                        <Box sx={{pr: "6px"}}>
+                            <Button variant="contained" onClick={handleClickViewCompany}>
+                                View Company
+                            </Button>
+                        </Box>
+                    </Stack>
+                </Paper>
+            </Container>
         </div>
     );
 };

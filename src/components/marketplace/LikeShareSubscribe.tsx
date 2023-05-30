@@ -21,6 +21,7 @@ const LikeShareSubscribe = () => {
 
     const handleSubscribeClick = () => {
         // Handle subscribe button click
+        setSubscribed(!subscribed);
     };
 
     return (
@@ -39,7 +40,7 @@ const LikeShareSubscribe = () => {
                 <Button
                     variant="outlined"
                     onClick={handleSubscribeClick}
-                    startIcon={liked ? <TurnedInIcon /> : <TurnedInNotIcon />}
+                    startIcon={subscribed ? <TurnedInIcon /> : <TurnedInNotIcon />}
                 >
                     Subscribe
                 </Button>

@@ -3,11 +3,13 @@
     "text": "We're helping small businesses in the APEC region work together to grow. Democratising opportunities for MSMEs is our mission.",
     "button": [
         {
-            "title": "Join us"
+            "title": "Join us",
+            "route": "/login"
         },
         {
             "title": "Learn more",
-            "color": "#fff"
+            "color": "#fff",
+            "route": "about"
         }
     ]
 }

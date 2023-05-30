@@ -36,7 +36,7 @@ const CollaborationDetailsPage: React.FC = () => {
         <div>
             <BasicSearchBar type={"collaboration"}/>
             <PostMediaPlayer/>
-            <PostTextDataDisplay postData={collaboration}/>
+            <PostTextDataDisplay postData={collaboration} type={"collaboration"}/>
             <CollaborationSource sourceId={collaboration.source_id}/>
             <MeetTheCompany companyId={collaboration.owner_id}/>
         </div>

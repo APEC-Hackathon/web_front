@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Row, Col, Drawer, Select } from "antd";
+import {useEffect, useState} from "react";
+import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
@@ -16,40 +16,6 @@ import {
     Span,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
-import i18n from "i18next";
-
-const handleChange = (language: string) => {
-    i18n.changeLanguage(language);
-};
-
-const countryLanguageMap: { [country: string]: string } = {
-    English: "en",
-    Chinese: "zh",
-    // Add other countries and their language codes here
-};
-
-const LanguageDropdown = () => {
-    const { Option } = Select;
-
-    const handleMenuClick = (country: string) => {
-        const language = countryLanguageMap[country];
-        handleChange(language);
-    };
-
-    return (
-        <Select
-            defaultValue="English"
-            style={{ width: 120 }}
-            onChange={handleMenuClick}
-        >
-            {Object.keys(countryLanguageMap).map((country) => (
-                <Option key={country} value={country}>
-                    {country}
-                </Option>
-            ))}
-        </Select>
-    );
-};
 
 const Header = ({ t }: any) => {
     const navigate = useNavigate();
@@ -64,6 +30,17 @@ const Header = ({ t }: any) => {
     };
 
     const MenuItem = () => {
+        const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+        useEffect(() => {
+            const checkAuthentication = () => {
+                const isAuthenticated1 = localStorage.getItem("token") !== null;
+                setIsAuthenticated(isAuthenticated1);
+            };
+
+            checkAuthentication();
+        }, []);
+
         const scrollTo = (id: string) => {
             const element = document.getElementById(id) as HTMLDivElement;
             element.scrollIntoView({
@@ -71,15 +48,30 @@ const Header = ({ t }: any) => {
             });
             setVisibility(false);
         };
+
+        const handleClickProblems = () => {
+            if (isAuthenticated) {
+                navigate("/marketplace/problems");
+            } else {
+                navigate("/login");
+            }
+        }
+
+        const handleClickCollaborations = () => {
+            if (isAuthenticated) {
+                navigate("/marketplace/collaborations");
+            } else {
+                navigate("/login");
+            }
+        }
         return (
             <>
-                <CustomNavLinkSmall onClick={() => navigate("/marketplace")}>
+                <CustomNavLinkSmall onClick={handleClickProblems}>
                     <Span>{t("Marketplace")}</Span>
                 </CustomNavLinkSmall>
-                <CustomNavLinkSmall onClick={() => navigate("/collaborations")}>
+                <CustomNavLinkSmall onClick={handleClickCollaborations}>
                     <Span>{t("Collaborations")}</Span>
                 </CustomNavLinkSmall>
-                <LanguageDropdown />
                 <CustomNavLinkSmall
                     style={{ width: "180px" }}
                     onClick={() => navigate("/login")}

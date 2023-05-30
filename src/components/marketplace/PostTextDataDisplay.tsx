@@ -6,9 +6,10 @@ import BidButton from "./BidButton";
 
 interface PostTextDataDisplayProps {
     postData: Collaboration | Problem | null;
+    type: string;
 }
 
-const PostTextDataDisplay: React.FC<PostTextDataDisplayProps> = ({ postData }) => {
+const PostTextDataDisplay: React.FC<PostTextDataDisplayProps> = ({ postData, type }) => {
     if (!postData) {
         return null;
     }
@@ -27,17 +28,17 @@ const PostTextDataDisplay: React.FC<PostTextDataDisplayProps> = ({ postData }) =
                         <Typography variant="h4" gutterBottom sx={{fontWeight: "bold"}}>
                             Title:
                         </Typography>
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1" gutterBottom sx={{pb: "12px"}}>
                             {title}
                         </Typography>
                         <Typography variant="h4" gutterBottom sx={{fontWeight: "bold"}}>
                             Description:
                         </Typography>
-                        <Typography variant="body1">{description}</Typography>
+                        <Typography variant="body1" sx={{pb: "12px"}}>{description}</Typography>
                     </Box>
                     <Stack sx={{pt: "12px", pb: "12px", pr: "6px"}}>
                         <LikeShareSubscribe />
-                        <BidButton />
+                        <BidButton type={type} id={postData.id}/>
                     </Stack>
                 </Stack>
             </Paper>

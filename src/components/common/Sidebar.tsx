@@ -1,4 +1,4 @@
-import {Avatar, Button, Drawer, IconButton, List, Stack, Toolbar} from "@mui/material";
+import {Avatar, Button, Drawer, List, Stack, Toolbar} from "@mui/material";
 import assets from "../../assets";
 import colorConfigs from "../../configs/colorConfigs";
 import sizeConfigs from "../../configs/sizeConfigs";
@@ -34,9 +34,10 @@ const Sidebar = () => {
                   startIcon={
                   <Avatar
                     variant={"circular"}
-                    src={assets.images.logo}
+                    src={assets.images.logoDark}
+                    sx={{mr: '6px'}}
                   />}
-                  sx={{ color: 'white', fontWeight: 'bold'}}
+                  sx={{ color: 'white', fontWeight: 'bold', pt: '8px'}}
               >
                   CollabMarket
               </Button>

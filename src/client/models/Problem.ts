@@ -9,5 +9,6 @@ export type Problem = {
     image_url?: string;
     id?: number;
     owner_id?: number;
+    bid_winner_id?: number;
 };
 
