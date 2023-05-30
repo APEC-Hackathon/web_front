@@ -16,6 +16,8 @@ import userApi from "../../api/userApi";
 import {useNavigate} from "react-router-dom";
 import ChatStartButton from "../chat/ChatStartButton";
 
+import './CompanyCard.css'
+
 interface CompanyCardProps {
     companyId: number | null
 }
@@ -44,7 +46,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
         navigate(`/profile/${companyId}`)
     }
     return (
-        <Card sx={{maxWidth: 345}}>
+        <Card className='company-card'>
             <CardHeader
                 action={
                     <IconButton aria-label="settings">
@@ -61,14 +63,12 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
                     alt={company?.organization_name}
                 />
             </Button>
-            <CardContent>
+            <CardContent sx={{ height: 120, overflow: 'hidden' }}>
                 <Typography variant="body2" color="text.secondary">
-                    {company?.organization_description ? company.organization_description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
-                        "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi " +
-                        "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " +
-                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                    {company?.organization_description ? company.organization_description : ""}
                 </Typography>
             </CardContent>
+            <div className="card-icons">
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon/>
@@ -78,6 +78,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
                 </IconButton>
                 <ChatStartButton userId={companyId!}/>
             </CardActions>
+            </div>
         </Card>
 
     );

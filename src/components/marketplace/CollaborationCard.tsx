@@ -56,7 +56,7 @@ const CollaborationCard = ({ collaboration }: CollaborationCardProps) => {
           alt={collaboration.title}
         />
       </Button>
-      <CardContent>
+      <CardContent sx={{ height: 120, overflow: 'hidden' }}>
         <Typography variant="body2" color="text.secondary">
           {collaboration.description
             ? collaboration.description
