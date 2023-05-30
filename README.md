@@ -21,7 +21,6 @@ This startup guide outlines the steps to run the application locally. This segme
 3. Resolve any issues that arise with  `npm audit fix`
 4. If all else fails, `npm install --legacy-peer-deps`
 5. Run the application with `npm start`
-6. Profit
 
 ### Startup Guide - Deployed application
 
