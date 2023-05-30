@@ -1,9 +1,16 @@
 import {Button, IconButton} from "@mui/material";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+import {useNavigate} from "react-router-dom";
 
-const ChatStartButton = () => {
+interface ChatStartButtonProps {
+    userId: number | undefined
+}
+
+const ChatStartButton = ({ userId }: ChatStartButtonProps) => {
+
+    const navigate = useNavigate();
     const handleConnectClick = () => {
-
+        navigate(`/chat/${userId}`);
     }
 
   return (

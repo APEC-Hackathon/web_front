@@ -25,15 +25,17 @@ const CompanyTextDataDisplay: React.FC<CompanyTextDataDisplayProps> = ({ userDat
                             Company Name:
                         </Typography>
                         <Typography variant="body1" gutterBottom sx={{pb: "12px"}}>
-                            {userData.organization_name}
+                            {userData.organization_name ? userData.organization_name : "Lorum Ipsum"}
                         </Typography>
                         <Typography variant="h4" gutterBottom sx={{fontWeight: "bold"}}>
                             Company Description:
                         </Typography>
-                        <Typography variant="body1" sx={{pb: "12px"}}>{userData.organization_description}</Typography>
+                        <Typography variant="body1" sx={{pb: "12px"}}>
+                            {userData.organization_description ? userData.organization_description : "Lorum Ipsum"}
+                        </Typography>
                     </Box>
                     <Stack sx={{pt: "12px", pb: "12px", pr: "6px"}}>
-                        <ChatStartButton/>
+                        <ChatStartButton userId={userData.id}/>
                     </Stack>
                 </Stack>
             </Paper>

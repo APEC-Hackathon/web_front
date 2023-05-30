@@ -10,11 +10,11 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import {User} from "../../client";
 import {useEffect, useState} from "react";
 import userApi from "../../api/userApi";
 import {useNavigate} from "react-router-dom";
+import ChatStartButton from "../chat/ChatStartButton";
 
 interface CompanyCardProps {
     companyId: number | null
@@ -39,10 +39,6 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
     }, [companyId]);
 
     const navigate = useNavigate();
-
-    const handleConnectClick = () => {
-
-    }
 
     const handleProfileClick = () => {
         navigate(`/profile/${companyId}`)
@@ -80,9 +76,7 @@ const CompanyCard = ({companyId}: CompanyCardProps) => {
                 <IconButton aria-label="share">
                     <ShareIcon/>
                 </IconButton>
-                <IconButton aria-label="connect" onClick={handleConnectClick}>
-                    <ConnectWithoutContactIcon/>
-                </IconButton>
+                <ChatStartButton userId={companyId!}/>
             </CardActions>
         </Card>
 
